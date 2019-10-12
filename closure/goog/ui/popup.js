@@ -41,10 +41,13 @@ goog.require('goog.ui.PopupBase');
  * @param {Element=} opt_element A DOM element for the popup.
  * @param {goog.positioning.AbstractPosition=} opt_position A positioning helper
  *     object.
+ * @param {boolean=} opt_dontSetElement EDITED: Disables calling of setElement in the constructor.
  * @constructor
  * @extends {goog.ui.PopupBase}
  */
-goog.ui.Popup = function(opt_element, opt_position) {
+goog.ui.Popup = function(opt_element, opt_position, opt_dontSetElement) {
+  goog.ui.PopupBase.call(this, opt_element, opt_dontSetElement);
+  
   /**
    * Corner of the popup to used in the positioning algorithm.
    *
@@ -59,7 +62,6 @@ goog.ui.Popup = function(opt_element, opt_position) {
    * @private {goog.positioning.AbstractPosition|undefined}
    */
   this.position_ = opt_position || undefined;
-  goog.ui.PopupBase.call(this, opt_element);
 };
 goog.inherits(goog.ui.Popup, goog.ui.PopupBase);
 goog.tagUnsealableClass(goog.ui.Popup);

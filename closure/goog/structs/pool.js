@@ -33,11 +33,12 @@ goog.require('goog.structs.Set');
  * A generic pool class. If min is greater than max, an error is thrown.
  * @param {number=} opt_minCount Min. number of objects (Default: 0).
  * @param {number=} opt_maxCount Max. number of objects (Default: 10).
+ * @param {boolean=} opt_dontCallAdjustForMax EDITED: whether to not call #adjustForMinMax from the constructor.
  * @constructor
  * @extends {goog.Disposable}
  * @template T
  */
-goog.structs.Pool = function(opt_minCount, opt_maxCount) {
+goog.structs.Pool = function(opt_minCount, opt_maxCount, opt_dontCallAdjustForMax) {
   goog.Disposable.call(this);
 
   /**
@@ -85,8 +86,10 @@ goog.structs.Pool = function(opt_minCount, opt_maxCount) {
    */
   this.lastAccess = null;
 
-  // Make sure that the minCount constraint is satisfied.
-  this.adjustForMinMax();
+  if (opt_dontCallAdjustForMax !== true) {
+    // Make sure that the minCount constraint is satisfied.
+    this.adjustForMinMax();
+  }
 };
 goog.inherits(goog.structs.Pool, goog.Disposable);
 

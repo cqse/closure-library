@@ -44,8 +44,9 @@ goog.require('goog.userAgent');
  * @extends {goog.events.EventTarget}
  * @param {Element=} opt_element A DOM element for the popup.
  * @param {goog.ui.PopupBase.Type=} opt_type Type of popup.
+ * @param {boolean=} opt_dontSetElement EDITED: Disables calling of setElement in the constructor.
  */
-goog.ui.PopupBase = function(opt_element, opt_type) {
+goog.ui.PopupBase = function(opt_element, opt_type, opt_dontSetElement) {
   goog.events.EventTarget.call(this);
 
   /**
@@ -55,7 +56,10 @@ goog.ui.PopupBase = function(opt_element, opt_type) {
    */
   this.handler_ = new goog.events.EventHandler(this);
 
-  this.setElement(opt_element || null);
+  // EDITED: Called in subclass instead in this case
+  if(!opt_dontSetElement) {
+    this.setElement(opt_element || null);
+  }
   if (opt_type) {
     this.setType(opt_type);
   }
