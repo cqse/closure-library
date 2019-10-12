@@ -60,18 +60,24 @@ goog.require('goog.ui.PopupBase');
  * @extends {goog.ui.Popup}
  */
 goog.ui.Tooltip = function(opt_el, opt_str, opt_domHelper) {
+  const tempDom = opt_domHelper ||
+      (opt_el ? goog.dom.getDomHelper(goog.dom.getElement(opt_el)) :
+                goog.dom.getDomHelper());
+
+  const element = tempDom.createDom(goog.dom.TagName.DIV, {
+    'style': 'position:absolute;display:none;'
+  });
+  goog.ui.Popup.call(this, element);
+
   /**
    * Dom Helper
    * @type {goog.dom.DomHelper}
    * @private
    */
-  this.dom_ = opt_domHelper ||
-      (opt_el ? goog.dom.getDomHelper(goog.dom.getElement(opt_el)) :
-                goog.dom.getDomHelper());
+  this.dom_ = tempDom;
 
-  goog.ui.Popup.call(this, this.dom_.createDom(goog.dom.TagName.DIV, {
-    'style': 'position:absolute;display:none;'
-  }));
+  // EDITED: Called here because of new positioning of super() call
+  this.setElement(element);
 
   /**
    * Cursor position relative to the page.
