@@ -45,16 +45,17 @@ goog.require('goog.ui.PaletteRenderer');
  * @extends {goog.ui.Palette}
  */
 goog.ui.ColorPalette = function(opt_colors, opt_renderer, opt_domHelper) {
+
+  goog.ui.Palette.call(
+      this, null, opt_renderer || goog.ui.PaletteRenderer.getInstance(),
+      opt_domHelper);
+
   /**
    * Array of colors to show in the palette.
    * @type {Array<string>}
    * @private
    */
   this.colors_ = opt_colors || [];
-
-  goog.ui.Palette.call(
-      this, null, opt_renderer || goog.ui.PaletteRenderer.getInstance(),
-      opt_domHelper);
 
   // Set the colors separately from the super call since we need the correct
   // DomHelper to be initialized for this class.

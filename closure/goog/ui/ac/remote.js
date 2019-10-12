@@ -42,13 +42,14 @@ goog.require('goog.ui.ac.Renderer');
  */
 goog.ui.ac.Remote = function(url, input, opt_multi, opt_useSimilar) {
   var matcher = new goog.ui.ac.RemoteArrayMatcher(url, !opt_useSimilar);
-  this.matcher_ = matcher;
 
   var renderer = new goog.ui.ac.Renderer();
 
   var inputhandler = new goog.ui.ac.InputHandler(null, null, !!opt_multi, 300);
 
   goog.ui.ac.AutoComplete.call(this, matcher, renderer, inputhandler);
+
+  this.matcher_ = matcher;
 
   inputhandler.attachAutoComplete(this);
   inputhandler.attachInputs(input);
