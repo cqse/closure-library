@@ -38,6 +38,13 @@ goog.require('goog.structs.PriorityPool');
  */
 goog.net.XhrIoPool = function(
     opt_headers, opt_minCount, opt_maxCount, opt_withCredentials) {
+  // EDITED: NO LONGER TRUE (super class changed)
+  // Must break convention of putting the super-class's constructor first. This
+  // is because the super-class constructor calls adjustForMinMax, which calls
+  // this class' createObject. In this class's implementation, it assumes that
+  // there is a headers_, and will lack those if not yet present.
+  goog.structs.PriorityPool.call(this, opt_minCount, opt_maxCount, true);
+
   /**
    * Map of default headers to add to every request.
    * @type {goog.structs.Map|undefined}
@@ -57,11 +64,8 @@ goog.net.XhrIoPool = function(
    */
   this.withCredentials_ = !!opt_withCredentials;
 
-  // Must break convention of putting the super-class's constructor first. This
-  // is because the super-class constructor calls adjustForMinMax, which calls
-  // this class' createObject. In this class's implementation, it assumes that
-  // there is a headers_, and will lack those if not yet present.
-  goog.structs.PriorityPool.call(this, opt_minCount, opt_maxCount);
+  // EDITED: Called here, because it's not done in super method anymore.
+  this.adjustForMinMax();
 };
 goog.inherits(goog.net.XhrIoPool, goog.structs.PriorityPool);
 

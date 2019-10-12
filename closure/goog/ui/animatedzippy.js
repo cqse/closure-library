@@ -58,6 +58,10 @@ goog.ui.AnimatedZippy = function(
   elContent.parentNode.replaceChild(elWrapper, elContent);
   elWrapper.appendChild(elContent);
 
+  // Call constructor of super class.
+  goog.ui.Zippy.call(
+      this, header, elContent, opt_expanded, undefined, domHelper, opt_role);
+
   /**
    * Content wrapper, used for animation.
    * @type {Element}
@@ -71,10 +75,6 @@ goog.ui.AnimatedZippy = function(
    * @private
    */
   this.anim_ = null;
-
-  // Call constructor of super class.
-  goog.ui.Zippy.call(
-      this, header, elContent, opt_expanded, undefined, domHelper, opt_role);
 
   // Set initial state.
   // NOTE: Set the class names as well otherwise animated zippys

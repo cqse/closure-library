@@ -1179,9 +1179,10 @@ goog.ui.Dialog.EventType = {
  *    this class is not. Suppress warnings until refactored.
  */
 goog.ui.Dialog.ButtonSet = function(opt_domHelper) {
+  goog.structs.Map.call(this);
+  
   // TODO(attila):  Refactor ButtonSet to extend goog.ui.Component?
   this.dom_ = opt_domHelper || goog.dom.getDomHelper();
-  goog.structs.Map.call(this);
 };
 goog.inherits(goog.ui.Dialog.ButtonSet, goog.structs.Map);
 goog.tagUnsealableClass(goog.ui.Dialog.ButtonSet);

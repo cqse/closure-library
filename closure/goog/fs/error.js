@@ -57,29 +57,32 @@ goog.fs.DOMErrorLike.prototype.code;
  * @final
  */
 goog.fs.Error = function(error, action) {
+  let tempName = null;
+  let tempCode = null;
+
+  if (error.name !== undefined) {
+    tempName = error.name;
+    // TODO(user): Remove warning suppression after JSCompiler stops
+    // firing a spurious warning here.
+    /** @suppress {deprecated} */
+    tempCode = goog.fs.Error.getCodeFromName_(error.name);
+  } else {
+    tempCode = /** @type {!goog.fs.Error.ErrorCode} */ (
+        goog.asserts.assertNumber(error.code));
+    tempName = goog.fs.Error.getNameFromCode_(tempCode);
+  }
+
+  goog.fs.Error.base(
+      this, 'constructor', goog.string.subs('%s %s', this.name, action));
+
   /** @type {string} */
-  this.name;
+  this.name = tempName;
 
   /**
    * @type {!goog.fs.Error.ErrorCode}
    * @deprecated Use the 'name' or 'message' field instead.
    */
-  this.code;
-
-  if (error.name !== undefined) {
-    this.name = error.name;
-    // TODO(user): Remove warning suppression after JSCompiler stops
-    // firing a spurious warning here.
-    /** @suppress {deprecated} */
-    this.code = goog.fs.Error.getCodeFromName_(error.name);
-  } else {
-    var code = /** @type {!goog.fs.Error.ErrorCode} */ (
-        goog.asserts.assertNumber(error.code));
-    this.code = code;
-    this.name = goog.fs.Error.getNameFromCode_(code);
-  }
-  goog.fs.Error.base(
-      this, 'constructor', goog.string.subs('%s %s', this.name, action));
+  this.code = tempCode;
 };
 goog.inherits(goog.fs.Error, goog.debug.Error);
 

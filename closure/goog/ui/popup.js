@@ -45,6 +45,8 @@ goog.require('goog.ui.PopupBase');
  * @extends {goog.ui.PopupBase}
  */
 goog.ui.Popup = function(opt_element, opt_position) {
+  goog.ui.PopupBase.call(this, opt_element);
+  
   /**
    * Corner of the popup to used in the positioning algorithm.
    *
@@ -59,7 +61,6 @@ goog.ui.Popup = function(opt_element, opt_position) {
    * @private {goog.positioning.AbstractPosition|undefined}
    */
   this.position_ = opt_position || undefined;
-  goog.ui.PopupBase.call(this, opt_element);
 };
 goog.inherits(goog.ui.Popup, goog.ui.PopupBase);
 goog.tagUnsealableClass(goog.ui.Popup);

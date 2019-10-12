@@ -31,11 +31,19 @@ goog.require('goog.structs.PriorityQueue');
  * A generic pool class. If min is greater than max, an error is thrown.
  * @param {number=} opt_minCount Min. number of objects (Default: 0).
  * @param {number=} opt_maxCount Max. number of objects (Default: 10).
+ * @param {boolean=} opt_dontCallAdjustForMax EDITED: whether to not call #adjustForMinMax from the constructor.
  * @constructor
  * @extends {goog.structs.Pool<VALUE>}
  * @template VALUE
  */
-goog.structs.PriorityPool = function(opt_minCount, opt_maxCount) {
+goog.structs.PriorityPool = function(opt_minCount, opt_maxCount, opt_dontCallAdjustForMax) {
+  // EDITED: NO LONGER TRUE
+  // Must break convention of putting the super-class's constructor first. This
+  // is because the super-class constructor calls adjustForMinMax, which this
+  // class overrides. In this class's implementation, it assumes that there
+  // is a requestQueue_, and will error if not present.
+  goog.structs.Pool.call(this, opt_minCount, opt_maxCount, true);
+
   /**
    * The key for the most recent timeout created.
    * @private {number|undefined}
@@ -48,11 +56,10 @@ goog.structs.PriorityPool = function(opt_minCount, opt_maxCount) {
    */
   this.requestQueue_ = new goog.structs.PriorityQueue();
 
-  // Must break convention of putting the super-class's constructor first. This
-  // is because the super-class constructor calls adjustForMinMax, which this
-  // class overrides. In this class's implementation, it assumes that there
-  // is a requestQueue_, and will error if not present.
-  goog.structs.Pool.call(this, opt_minCount, opt_maxCount);
+  if (opt_dontCallAdjustForMax !== true) {
+    // EDITED: Called here, because it's not done in super method anymore.
+    this.adjustForMinMax();
+  }
 };
 goog.inherits(goog.structs.PriorityPool, goog.structs.Pool);
 
