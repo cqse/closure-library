@@ -171,7 +171,7 @@ goog.ui.SliderBase.prototype.orientation_ =
 goog.ui.SliderBase.prototype.currentAnimation_;
 
 
-/** @private {!goog.Timer} */
+/** @private {goog.Timer} */
 goog.ui.SliderBase.prototype.incTimer_;
 
 

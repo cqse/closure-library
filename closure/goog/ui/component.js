@@ -601,7 +601,7 @@ goog.ui.Component.prototype.setParent = function(parent) {
 
 /**
  * Returns the component's parent, if any.
- * @return {goog.ui.Component?} The parent component.
+ * @return {?goog.ui.Component} The parent component.
  */
 goog.ui.Component.prototype.getParent = function() {
   return this.parent_;

@@ -1423,7 +1423,7 @@ goog.ui.tree.BaseNode.prototype.getNextShownNode = function() {
       if (next != null) {
         return next;
       }
-      parent = parent.getParent();
+      parent = /** @type {goog.ui.tree.BaseNode} */(parent.getParent());
     }
     return null;
   }
