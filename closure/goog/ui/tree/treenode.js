@@ -55,7 +55,7 @@ goog.ui.tree.TreeNode.prototype.getTree = function() {
   }
   var parent = this.getParent();
   if (parent) {
-    var tree = parent.getTree();
+    var tree = /** @type {!goog.ui.tree.TreeNode} */(parent).getTree();
     if (tree) {
       this.setTreeInternal(tree);
       return tree;
