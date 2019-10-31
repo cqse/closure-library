@@ -67,12 +67,13 @@ goog.require('goog.userAgent');
  * for example usage.
  * @param {goog.ui.ControlContent=} opt_content Text caption or DOM structure
  *     to display as the content of the control (if any).
- * @param {goog.ui.ControlRenderer=} opt_renderer Renderer used to render or
+ * @param {T=} opt_renderer Renderer used to render or
  *     decorate the component; defaults to {@link goog.ui.ControlRenderer}.
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper, used for
  *     document interaction.
  * @constructor
  * @extends {goog.ui.Component}
+ * @template T
  */
 goog.ui.Control = function(opt_content, opt_renderer, opt_domHelper) {
   goog.ui.Component.call(this, opt_domHelper);
@@ -125,7 +126,7 @@ goog.ui.Control.getDecorator =
 
 /**
  * Renderer associated with the component.
- * @type {goog.ui.ControlRenderer|undefined}
+ * @type {T|undefined}
  * @private
  */
 goog.ui.Control.prototype.renderer_;
@@ -296,7 +297,7 @@ goog.ui.Control.prototype.getKeyHandler = function() {
 /**
  * Returns the renderer used by this component to render itself or to decorate
  * an existing element.
- * @return {goog.ui.ControlRenderer|undefined} Renderer used by the component
+ * @return {T|undefined} Renderer used by the component
  *     (undefined if none).
  */
 goog.ui.Control.prototype.getRenderer = function() {
@@ -307,7 +308,7 @@ goog.ui.Control.prototype.getRenderer = function() {
 /**
  * Registers the given renderer with the component.  Changing renderers after
  * the component has entered the document is an error.
- * @param {goog.ui.ControlRenderer} renderer Renderer used by the component.
+ * @param {T} renderer Renderer used by the component.
  * @throws {Error} If the control is already in the document.
  */
 goog.ui.Control.prototype.setRenderer = function(renderer) {

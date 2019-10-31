@@ -70,7 +70,7 @@ goog.require('goog.ui.MenuSeparator');
  * @param {goog.ui.MenuRenderer=} opt_renderer Renderer used to render or
  *     decorate the container; defaults to {@link goog.ui.MenuRenderer}.
  * @constructor
- * @extends {goog.ui.Container}
+ * @extends {goog.ui.Container<goog.ui.MenuRenderer>}
  */
 goog.ui.Menu = function(opt_domHelper, opt_renderer) {
   goog.ui.Container.call(
