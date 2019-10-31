@@ -3284,7 +3284,7 @@ goog.dom.DomHelper.prototype.getAncestorByTagNameAndClass =
  * class name. If the passed element matches the specified criteria, the
  * element itself is returned.
  * @param {Node} element The DOM node to start with.
- * @param {string} class The class name to match.
+ * @param {string} className The class name to match.
  * @param {number=} opt_maxSearchSteps Maximum number of levels to search up the
  *     dom.
  * @return {Element} The first ancestor that matches the passed criteria, or
