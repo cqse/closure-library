@@ -36,7 +36,7 @@ goog.require('goog.ui.ToolbarRenderer');
  *     defaults to `HORIZONTAL`.
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
  * @constructor
- * @extends {goog.ui.Container}
+ * @extends {goog.ui.Container<goog.ui.ToolbarRenderer>}
  */
 goog.ui.Toolbar = function(opt_renderer, opt_orientation, opt_domHelper) {
   goog.ui.Container.call(

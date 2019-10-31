@@ -113,7 +113,7 @@ goog.require('goog.ui.ControlRenderer');
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper, used for
  *     document interaction.
  * @constructor
- * @extends {goog.ui.Control}
+ * @extends {goog.ui.Control<goog.ui.ControlRenderer>}
  * @final
  */
 goog.ui.media.Media = function(dataModel, opt_renderer, opt_domHelper) {

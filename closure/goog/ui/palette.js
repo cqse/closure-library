@@ -51,7 +51,7 @@ goog.require('goog.ui.SelectionModel');
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper, used for
  *     document interaction.
  * @constructor
- * @extends {goog.ui.Control}
+ * @extends {goog.ui.Control<goog.ui.PaletteRenderer>}
  */
 goog.ui.Palette = function(items, opt_renderer, opt_domHelper) {
   goog.ui.Palette.base(

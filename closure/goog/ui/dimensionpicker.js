@@ -48,7 +48,7 @@ goog.require('goog.ui.registry');
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper, used for
  *     document interaction.
  * @constructor
- * @extends {goog.ui.Control}
+ * @extends {goog.ui.Control<goog.ui.DimensionPickerRenderer>}
  * @final
  */
 goog.ui.DimensionPicker = function(opt_renderer, opt_domHelper) {

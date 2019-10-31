@@ -55,7 +55,7 @@ goog.require('goog.ui.registry');
  * @param {goog.dom.DomHelper=} opt_domHelper DOM helper, used for document
  *     interaction.
  * @constructor
- * @extends {goog.ui.Container}
+ * @extends {goog.ui.Container<goog.ui.TabBarRenderer>}
  */
 goog.ui.TabBar = function(opt_location, opt_renderer, opt_domHelper) {
   this.setLocation(opt_location || goog.ui.TabBar.Location.TOP);

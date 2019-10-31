@@ -35,7 +35,7 @@ goog.require('goog.ui.registry');
  *     document interactions.
  * @param {goog.ui.MenuHeaderRenderer=} opt_renderer Optional renderer.
  * @constructor
- * @extends {goog.ui.Control}
+ * @extends {goog.ui.Control<goog.ui.MenuHeaderRenderer>}
  */
 goog.ui.MenuHeader = function(content, opt_domHelper, opt_renderer) {
   goog.ui.Control.call(
