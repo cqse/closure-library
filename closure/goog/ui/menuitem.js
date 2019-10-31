@@ -46,7 +46,7 @@ goog.require('goog.ui.registry');  // circular
  *     document interactions.
  * @param {goog.ui.MenuItemRenderer=} opt_renderer Optional renderer.
  * @constructor
- * @extends {goog.ui.Control}
+ * @extends {goog.ui.Control<goog.ui.MenuItemRenderer>}
  */
 goog.ui.MenuItem = function(content, opt_model, opt_domHelper, opt_renderer) {
   goog.ui.Control.call(

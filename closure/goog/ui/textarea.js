@@ -45,7 +45,7 @@ goog.require('goog.userAgent');
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper, used for
  *     document interaction.
  * @constructor
- * @extends {goog.ui.Control}
+ * @extends {goog.ui.Control<goog.ui.TextareaRenderer>}
  */
 goog.ui.Textarea = function(content, opt_renderer, opt_domHelper) {
   goog.ui.Control.call(

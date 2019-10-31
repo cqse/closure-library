@@ -55,12 +55,13 @@ goog.require('goog.ui.Control');
  *  </ul>
  * @param {?goog.ui.Container.Orientation=} opt_orientation Container
  *     orientation; defaults to `VERTICAL`.
- * @param {goog.ui.ContainerRenderer=} opt_renderer Renderer used to render or
+ * @param {T=} opt_renderer Renderer used to render or
  *     decorate the container; defaults to {@link goog.ui.ContainerRenderer}.
  * @param {goog.dom.DomHelper=} opt_domHelper DOM helper, used for document
  *     interaction.
  * @extends {goog.ui.Component}
  * @constructor
+ * @template T
  */
 goog.ui.Container = function(opt_orientation, opt_renderer, opt_domHelper) {
   goog.ui.Component.call(this, opt_domHelper);
@@ -122,7 +123,7 @@ goog.ui.Container.prototype.keyHandler_ = null;
 
 /**
  * Renderer for the container.  Defaults to {@link goog.ui.ContainerRenderer}.
- * @type {goog.ui.ContainerRenderer?}
+ * @type {T?}
  * @private
  */
 goog.ui.Container.prototype.renderer_ = null;
@@ -280,7 +281,7 @@ goog.ui.Container.prototype.getKeyHandler = function() {
 /**
  * Returns the renderer used by this container to render itself or to decorate
  * an existing element.
- * @return {goog.ui.ContainerRenderer} Renderer used by the container.
+ * @return {T} Renderer used by the container.
  */
 goog.ui.Container.prototype.getRenderer = function() {
   return this.renderer_;
@@ -290,7 +291,7 @@ goog.ui.Container.prototype.getRenderer = function() {
 /**
  * Registers the given renderer with the container.  Changing renderers after
  * the container has already been rendered or decorated is an error.
- * @param {goog.ui.ContainerRenderer} renderer Renderer used by the container.
+ * @param {T} renderer Renderer used by the container.
  */
 goog.ui.Container.prototype.setRenderer = function(renderer) {
   if (this.getElement()) {
