@@ -38,7 +38,7 @@ goog.require('goog.ui.registry');
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper, used for
  *     document interaction.
  * @constructor
- * @extends {goog.ui.Control}
+ * @extends {goog.ui.Control<goog.ui.TabRenderer>}
  */
 goog.ui.Tab = function(content, opt_renderer, opt_domHelper) {
   goog.ui.Control.call(

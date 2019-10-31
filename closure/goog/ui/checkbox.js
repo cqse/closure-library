@@ -44,7 +44,7 @@ goog.require('goog.ui.registry');
  * @param {goog.ui.CheckboxRenderer=} opt_renderer Renderer used to render or
  *     decorate the checkbox; defaults to {@link goog.ui.CheckboxRenderer}.
  * @constructor
- * @extends {goog.ui.Control}
+ * @extends {goog.ui.Control<goog.ui.CheckboxRenderer>}
  */
 goog.ui.Checkbox = function(opt_checked, opt_domHelper, opt_renderer) {
   var renderer = opt_renderer || goog.ui.CheckboxRenderer.getInstance();

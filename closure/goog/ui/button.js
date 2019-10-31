@@ -44,7 +44,7 @@ goog.require('goog.ui.registry');
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper, used for
  *     document interaction.
  * @constructor
- * @extends {goog.ui.Control}
+ * @extends {goog.ui.Control<goog.ui.ButtonRenderer>}
  */
 goog.ui.Button = function(opt_content, opt_renderer, opt_domHelper) {
   goog.ui.Control.call(
