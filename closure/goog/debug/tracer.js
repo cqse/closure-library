@@ -272,6 +272,30 @@ goog.debug.Trace_.Event_.prototype.comment;
 
 
 /**
+ * @type {number|undefined}
+ */
+goog.debug.Trace_.Event_.prototype.startTime;
+
+
+/**
+ * @type {number|undefined}
+ */
+goog.debug.Trace_.Event_.prototype.stopTime;
+
+
+/**
+ * @type {number|undefined}
+ */
+goog.debug.Trace_.Event_.prototype.eventTime;
+
+
+/**
+ * @type {number|undefined}
+ */
+goog.debug.Trace_.Event_.prototype.totalVarAlloc;
+
+
+/**
  * Returns a formatted string for the event.
  * @param {number} startTime The start time of the trace to generate relative
  * times.
