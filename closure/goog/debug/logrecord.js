@@ -45,7 +45,7 @@ goog.debug.LogRecord = function(
  * @type {number}
  * @private
  */
-goog.debug.LogRecord.prototype.time_;
+goog.debug.LogRecord.prototype.time_ = 0;
 
 
 /**
@@ -61,7 +61,7 @@ goog.debug.LogRecord.prototype.level_;
  * @type {string}
  * @private
  */
-goog.debug.LogRecord.prototype.msg_;
+goog.debug.LogRecord.prototype.msg_ = '';
 
 
 /**
@@ -69,7 +69,7 @@ goog.debug.LogRecord.prototype.msg_;
  * @type {string}
  * @private
  */
-goog.debug.LogRecord.prototype.loggerName_;
+goog.debug.LogRecord.prototype.loggerName_ = '';
 
 
 /**

@@ -331,7 +331,7 @@ goog.Promise.returnEntry_ = function(entry) {
  *     with the given value. If the input value is already a goog.Promise, it
  *     will be returned immediately without creating a new instance.
  * @template VALUE
- * @template RESULT := type('goog.Promise',
+ * @template RESULT := type('Promise',
  *     cond(isUnknown(VALUE), unknown(),
  *       mapunion(VALUE, (V) =>
  *         cond(isTemplatized(V) && sub(rawTypeOf(V), 'IThenable'),
