@@ -61,7 +61,7 @@ goog.Thenable = function() {};
  * When a Promise (or thenable) is returned from the fulfilled callback,
  * the result is the payload of that promise, not the promise itself.
  *
- * @template RESULT := type('goog.Promise',
+ * @template RESULT := type('Promise',
  *     cond(isUnknown(VALUE), unknown(),
  *       mapunion(VALUE, (V) =>
  *         cond(isTemplatized(V) && sub(rawTypeOf(V), 'IThenable'),
