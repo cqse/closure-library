@@ -1281,6 +1281,7 @@ goog.ui.Control.isMouseEventWithinElement_ = function(e, elem) {
  * @param {goog.events.Event} e Mouse event to handle.
  */
 goog.ui.Control.prototype.handleMouseDown = function(e) {
+    e = /** @type {!goog.events.BrowserEvent} */ (e);
   if (this.isEnabled()) {
     // Highlight enabled control on mousedown, regardless of the mouse button.
     if (this.isAutoState(goog.ui.Component.State.HOVER)) {

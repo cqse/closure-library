@@ -651,6 +651,7 @@ goog.net.XhrIo.prototype.send = function(
  * @param {!goog.net.XhrLike.OrNative} xhr The request.
  * @return {boolean} True if the request supports level 2 timeout.
  * @private
+ * @suppress {checkTypes}
  */
 goog.net.XhrIo.shouldUseXhr2Timeout_ = function(xhr) {
   return goog.userAgent.IE && goog.userAgent.isVersionOrHigher(9) &&
@@ -1199,6 +1200,7 @@ goog.net.XhrIo.prototype.getResponseJson = function(opt_xssiPrefix) {
  * returned.
  *
  * @return {*} The response.
+ * @suppress {checkTypes}
  */
 goog.net.XhrIo.prototype.getResponse = function() {
   try {

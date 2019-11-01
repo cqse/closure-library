@@ -129,8 +129,10 @@ goog.fx.AnimationParallelQueue = function() {
 };
 goog.inherits(goog.fx.AnimationParallelQueue, goog.fx.AnimationQueue);
 
-
-/** @override */
+/**
+ * @override
+ * @suppress {checkTypes}
+ */
 goog.fx.AnimationParallelQueue.prototype.play = function(opt_restart) {
   if (this.queue.length == 0) {
     return false;
@@ -228,7 +230,10 @@ goog.fx.AnimationSerialQueue = function() {
 goog.inherits(goog.fx.AnimationSerialQueue, goog.fx.AnimationQueue);
 
 
-/** @override */
+/**
+ * @override
+ * @suppress {checkTypes}
+ */
 goog.fx.AnimationSerialQueue.prototype.play = function(opt_restart) {
   if (this.queue.length == 0) {
     return false;
