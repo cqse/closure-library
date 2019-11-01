@@ -57,7 +57,7 @@ goog.require('goog.userAgent');
  *    </div>
  *
  * @constructor
- * @extends {goog.ui.ControlRenderer}
+ * @extends {goog.ui.ControlRenderer<goog.ui.Palette>}
  */
 goog.ui.PaletteRenderer = function() {
   goog.ui.ControlRenderer.call(this);
@@ -93,7 +93,7 @@ goog.ui.PaletteRenderer.GRID_WIDTH_ATTRIBUTE = 'gridWidth';
  * Returns the palette items arranged in a table wrapped in a DIV, with the
  * renderer's own CSS class and additional state-specific classes applied to
  * it.
- * @param {goog.ui.Control} palette goog.ui.Palette to render.
+ * @param {goog.ui.Palette} palette goog.ui.Palette to render.
  * @return {!Element} Root element for the palette.
  * @override
  */
