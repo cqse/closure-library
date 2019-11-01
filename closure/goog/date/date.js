@@ -173,11 +173,11 @@ goog.date.isLongIsoYear = function(year) {
  * Returns the number of days for a given month.
  *
  * @param {number} year Year part of date.
- * @param {number} month Month part of date.
+ * @param {number} monthNumber Month part of date.
  * @return {number} The number of days for the given month.
  */
-goog.date.getNumberOfDaysInMonth = function(year, month) {
-  switch (month) {
+goog.date.getNumberOfDaysInMonth = function(year, monthNumber) {
+  switch (monthNumber) {
     case goog.date.month.FEB:
       return goog.date.isLeapYear(year) ? 29 : 28;
     case goog.date.month.JUN:
@@ -231,7 +231,7 @@ goog.date.isSameYear = function(date, opt_now) {
  * and year of week.
  *
  * @param {number} year Year part of date.
- * @param {number} month Month part of date (0-11).
+ * @param {number} monthNumber Month part of date (0-11).
  * @param {number} date Day part of date (1-31).
  * @param {number=} opt_weekDay Cut off weekday, defaults to Thursday.
  * @param {number=} opt_firstDayOfWeek First day of the week, defaults to
@@ -241,8 +241,8 @@ goog.date.isSameYear = function(date, opt_now) {
  * @private
  */
 goog.date.getCutOffSameWeek_ = function(
-    year, month, date, opt_weekDay, opt_firstDayOfWeek) {
-  var d = new Date(year, month, date);
+    year, monthNumber, date, opt_weekDay, opt_firstDayOfWeek) {
+  var d = new Date(year, monthNumber, date);
 
   // Default to Thursday for cut off as per ISO 8601.
   var cutoff =
@@ -271,7 +271,7 @@ goog.date.getCutOffSameWeek_ = function(
  * Static function for week number calculation. ISO 8601 implementation.
  *
  * @param {number} year Year part of date.
- * @param {number} month Month part of date (0-11).
+ * @param {number} monthNumber Month part of date (0-11).
  * @param {number} date Day part of date (1-31).
  * @param {number=} opt_weekDay Cut off weekday, defaults to Thursday.
  * @param {number=} opt_firstDayOfWeek First day of the week, defaults to
@@ -280,9 +280,9 @@ goog.date.getCutOffSameWeek_ = function(
  * @return {number} The week number (1-53).
  */
 goog.date.getWeekNumber = function(
-    year, month, date, opt_weekDay, opt_firstDayOfWeek) {
+    year, monthNumber, date, opt_weekDay, opt_firstDayOfWeek) {
   var cutoffSameWeek = goog.date.getCutOffSameWeek_(
-      year, month, date, opt_weekDay, opt_firstDayOfWeek);
+      year, monthNumber, date, opt_weekDay, opt_firstDayOfWeek);
 
   // Unix timestamp of January 1 in the year of the week.
   var jan1 = new Date(new Date(cutoffSameWeek).getFullYear(), 0, 1).valueOf();
@@ -298,7 +298,7 @@ goog.date.getWeekNumber = function(
  * Static function for year of the week. ISO 8601 implementation.
  *
  * @param {number} year Year part of date.
- * @param {number} month Month part of date (0-11).
+ * @param {number} monthNumber Month part of date (0-11).
  * @param {number} date Day part of date (1-31).
  * @param {number=} opt_weekDay Cut off weekday, defaults to Thursday.
  * @param {number=} opt_firstDayOfWeek First day of the week, defaults to
@@ -307,9 +307,9 @@ goog.date.getWeekNumber = function(
  * @return {number} The four digit year of date.
  */
 goog.date.getYearOfWeek = function(
-    year, month, date, opt_weekDay, opt_firstDayOfWeek) {
+    year, monthNumber, date, opt_weekDay, opt_firstDayOfWeek) {
   var cutoffSameWeek = goog.date.getCutOffSameWeek_(
-      year, month, date, opt_weekDay, opt_firstDayOfWeek);
+      year, monthNumber, date, opt_weekDay, opt_firstDayOfWeek);
 
   return new Date(cutoffSameWeek).getFullYear();
 };
@@ -496,13 +496,13 @@ goog.date.setIso8601TimeOnly_ = function(d, formatted) {
     // can differ from the UTC date, and the date part of an ISO 8601 string is
     // always set in terms of the local date.
     var year = d.getYear();
-    var month = d.getMonth();
+    var monthNumber = d.getMonth();
     var day = d.getDate();
     var hour = Number(timeParts[1]);
     var minute = Number(timeParts[2]) || 0;
     var second = Number(timeParts[3]) || 0;
     var millisecond = timeParts[4] ? Number(timeParts[4]) * 1000 : 0;
-    var utc = Date.UTC(year, month, day, hour, minute, second, millisecond);
+    var utc = Date.UTC(year, monthNumber, day, hour, minute, second, millisecond);
 
     d.setTime(utc + offsetMinutes * 60000);
   } else {
@@ -835,12 +835,12 @@ goog.date.Date = function(opt_year, opt_month, opt_date) {
  * date value by explicitly setting the full year.
  * @private
  * @param {number} fullYear The full year (including century).
- * @param {number} month The month, from 0-11.
+ * @param {number} monthNumber The month, from 0-11.
  * @param {number} date The day of the month.
  * @return {!Date} The constructed Date object.
  */
-goog.date.Date.prototype.buildDate_ = function(fullYear, month, date) {
-  var d = new Date(fullYear, month, date);
+goog.date.Date.prototype.buildDate_ = function(fullYear, monthNumber, date) {
+  var d = new Date(fullYear, monthNumber, date);
   if (fullYear >= 0 && fullYear < 100) {
     // Can't just setFullYear as new Date() can flip over for e.g. month = 13.
     d.setFullYear(d.getFullYear() - 1900);
@@ -1239,21 +1239,21 @@ goog.date.Date.prototype.add = function(interval) {
     // 28 or 29. Doing it this way overcomes that problem.
 
     // adjust year and month, accounting for both directions
-    var month = this.getMonth() + interval.months + interval.years * 12;
-    var year = this.getYear() + Math.floor(month / 12);
-    month %= 12;
-    if (month < 0) {
-      month += 12;
+    var monthNumber = this.getMonth() + interval.months + interval.years * 12;
+    var year = this.getYear() + Math.floor(monthNumber / 12);
+    monthNumber %= 12;
+    if (monthNumber < 0) {
+      monthNumber += 12;
     }
 
-    var daysInTargetMonth = goog.date.getNumberOfDaysInMonth(year, month);
+    var daysInTargetMonth = goog.date.getNumberOfDaysInMonth(year, monthNumber);
     var date = Math.min(daysInTargetMonth, this.getDate());
 
     // avoid inadvertently causing rollovers to adjacent months
     this.setDate(1);
 
     this.setFullYear(year);
-    this.setMonth(month);
+    this.setMonth(monthNumber);
     this.setDate(date);
   }
 

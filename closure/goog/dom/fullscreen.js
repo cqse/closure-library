@@ -61,7 +61,6 @@ goog.dom.fullscreen.FullscreenNavigationUI = {
 
 /**
  * @record
- * @extends {FullscreenOptions}
  */
 goog.dom.fullscreen.FullscreenOptions = function() {};
 

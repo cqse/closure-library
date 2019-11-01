@@ -38,7 +38,7 @@ goog.require('goog.ui.ac.RenderOptions');
  *
  * @param {Object} matcher A data source and row matcher, implements
  *        <code>requestMatchingRows(token, maxMatches, matchCallback)</code>.
- * @param {goog.events.EventTarget} renderer An object that implements
+ * @param {goog.ui.ac.Renderer} renderer An object that implements
  *        <code>
  *          isVisible():boolean<br>
  *          renderRows(rows:Array, token:string, target:Element);<br>
@@ -84,7 +84,7 @@ goog.ui.ac.AutoComplete = function(matcher, renderer, selectionHandler) {
 
   /**
    * A renderer to render/show/highlight/hide the autocomplete menu.
-   * @type {goog.events.EventTarget}
+   * @type {goog.ui.ac.Renderer}
    * @protected
    * @suppress {underscore|visibility}
    */
