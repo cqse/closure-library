@@ -111,8 +111,10 @@ goog.fx.css3.Transition = function(
 };
 goog.inherits(goog.fx.css3.Transition, goog.fx.TransitionBase);
 
-
-/** @override */
+/**
+ * @override
+ * @suppress {checkTypes}
+ */
 goog.fx.css3.Transition.prototype.play = function() {
   if (this.isPlaying()) {
     return false;

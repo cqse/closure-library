@@ -740,6 +740,7 @@ goog.html.sanitizer.HtmlSanitizer.Builder.prototype.build = function() {
  * Installs the sanitization policies for the attributes.
  * May only be called once.
  * @private
+ * @suppress {checkTypes}
  */
 goog.html.sanitizer.HtmlSanitizer.Builder.prototype.installPolicies_ =
     function() {

@@ -90,7 +90,9 @@ goog.tagUnsealableClass(goog.ui.AnimatedZippy);
 /**
  * Constants for event names.
  *
- * @const
+ * @override
+ * @suppress {checkTypes}
+ * @enum {string}
  */
 goog.ui.AnimatedZippy.Events = {
   // The beginning of the animation when the zippy state toggles.
@@ -190,6 +192,7 @@ goog.ui.AnimatedZippy.prototype.setExpanded = function(expanded) {
 goog.ui.AnimatedZippy.prototype.onAnimate_ = function(e) {
   var contentElement = this.getContentElement();
   var h = contentElement.offsetHeight;
+  e = /** @type {!goog.fx.AnimationEvent} */ (e);
   contentElement.style.marginTop = (e.y - h) + 'px';
 };
 

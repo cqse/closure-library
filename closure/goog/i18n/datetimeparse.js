@@ -1027,6 +1027,7 @@ goog.i18n.DateTimeParse.MyDate_.prototype.dayOfWeek;
  * @param {number} year 2 digit year value before adjustment.
  * @return {number} disambiguated year.
  * @private
+ * @suppress {checkTypes}
  */
 goog.i18n.DateTimeParse.MyDate_.prototype.setTwoDigitYear_ = function(year) {
   var now = new Date();
@@ -1050,6 +1051,7 @@ goog.i18n.DateTimeParse.MyDate_.prototype.setTwoDigitYear_ = function(year) {
  *
  * @return {boolean} false if fields specify a invalid date.
  * @private
+ * @suppress {checkTypes}
  */
 goog.i18n.DateTimeParse.MyDate_.prototype.calcDate_ = function(
     date, validation) {

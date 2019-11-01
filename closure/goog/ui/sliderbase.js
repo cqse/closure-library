@@ -123,6 +123,7 @@ goog.tagUnsealableClass(goog.ui.SliderBase);
  * are also sent for single-thumb sliders, since the one thumb controls both
  * value and extent together; in this case, they can simply be ignored.
  * @enum {string}
+ * @suppress {checkTypes}
  */
 goog.ui.SliderBase.EventType = {
   /** User started dragging the value thumb */

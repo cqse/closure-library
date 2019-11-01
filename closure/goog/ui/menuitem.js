@@ -235,6 +235,7 @@ goog.ui.MenuItem.prototype.getAccelerator = function() {
 goog.ui.MenuItem.prototype.handleMouseUp = function(e) {
   var parentMenu = /** @type {goog.ui.Menu} */ (this.getParent());
 
+  e = /** @type {!goog.events.BrowserEvent} */ (e);
   if (parentMenu) {
     var oldCoords = parentMenu.openingCoords;
     // Clear out the saved opening coords immediately so they're not used twice.
