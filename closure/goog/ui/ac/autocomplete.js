@@ -816,7 +816,7 @@ goog.ui.ac.AutoComplete.prototype.renderRows = function(rows, opt_options) {
     anchor = this.inputToAnchorMap_[goog.getUid(this.target_)] || this.target_;
   }
   this.renderer_.setAnchorElement(anchor);
-  this.renderer_.renderRows(rendRows, this.token_, this.target_);
+  this.renderer_.renderRows(rendRows, /** @type {string} */(this.token_), this.target_);
 
   var autoHilite = this.autoHilite_;
   if (optionsObj && optionsObj.getAutoHilite() !== undefined) {

@@ -104,6 +104,8 @@ goog.ui.TableSorter.prototype.setSortableHeaderRowIndex = function(index) {
 /**
  * Table sorter events.
  * @enum {string}
+ * @override
+ * @suppress {checkTypes}
  */
 goog.ui.TableSorter.EventType = {
   BEFORESORT: 'beforesort',

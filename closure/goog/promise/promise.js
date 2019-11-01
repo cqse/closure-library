@@ -1340,7 +1340,10 @@ goog.Promise.CancellationError.prototype.name = 'cancel';
  * @template TYPE
  */
 goog.Promise.Resolver_ = function(promise, resolve, reject) {
-  /** @const */
+  /**
+   * @const
+   * @suppress {checkTypes}
+   */
   this.promise = promise;
 
   /** @const */

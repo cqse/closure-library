@@ -32,6 +32,7 @@ goog.require('goog.fx.Transition');  // Unreferenced: interface
  * @struct
  * @implements {goog.fx.Transition}
  * @extends {goog.events.EventTarget}
+ * @suppress {checkTypes}
  */
 goog.fx.TransitionBase = function() {
   goog.fx.TransitionBase.base(this, 'constructor');

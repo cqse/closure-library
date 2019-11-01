@@ -1174,7 +1174,7 @@ goog.ui.Component.prototype.getChildIds = function() {
 /**
  * Returns the child with the given ID, or null if no such child exists.
  * @param {string} id Child component ID.
- * @return {goog.ui.Component?} The child with the given ID; null if none.
+ * @return {?goog.ui.Component} The child with the given ID; null if none.
  */
 goog.ui.Component.prototype.getChild = function(id) {
   // Use childIndex_ for O(1) access by ID.
@@ -1189,7 +1189,7 @@ goog.ui.Component.prototype.getChild = function(id) {
 /**
  * Returns the child at the given index, or null if the index is out of bounds.
  * @param {number} index 0-based index.
- * @return {goog.ui.Component?} The child at the given index; null if none.
+ * @return {?goog.ui.Component} The child at the given index; null if none.
  */
 goog.ui.Component.prototype.getChildAt = function(index) {
   // Use children_ for access by index.
@@ -1217,7 +1217,7 @@ goog.ui.Component.prototype.forEachChild = function(f, opt_obj) {
 /**
  * Returns the 0-based index of the given child component, or -1 if no such
  * child is found.
- * @param {goog.ui.Component?} child The child component.
+ * @param {?goog.ui.Component} child The child component.
  * @return {number} 0-based index of the child component; -1 if not found.
  */
 goog.ui.Component.prototype.indexOfChild = function(child) {

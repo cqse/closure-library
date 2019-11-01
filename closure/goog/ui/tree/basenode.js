@@ -134,6 +134,7 @@ goog.inherits(goog.ui.tree.BaseNode, goog.ui.Component);
 /**
  * The event types dispatched by this class.
  * @enum {string}
+ * @suppress {checkTypes}
  */
 goog.ui.tree.BaseNode.EventType = {
   BEFORE_EXPAND: 'beforeexpand',

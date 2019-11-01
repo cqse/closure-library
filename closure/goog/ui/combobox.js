@@ -891,6 +891,7 @@ goog.ui.ComboBox.prototype.setItemHighlightFromToken_ = function(token) {
     var caption = item.getCaption();
     if (caption && this.matchFunction_(caption.toLowerCase(), token)) {
       this.menu_.setHighlightedIndex(i);
+      item = /** @type {*} */ (item);
       if (item.setFormatFromToken) {
         item.setFormatFromToken(token);
       }
@@ -907,8 +908,10 @@ goog.ui.ComboBox.prototype.setItemHighlightFromToken_ = function(token) {
  * @return {boolean} Whether the item has an isSticky method and the method
  *     returns true.
  * @private
+ * @suppress {checkTypes}
  */
 goog.ui.ComboBox.prototype.isItemSticky_ = function(item) {
+  item = /** @type {*} */ (item);
   return typeof item.isSticky == 'function' && item.isSticky();
 };
 

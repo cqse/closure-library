@@ -207,6 +207,7 @@ goog.ui.Textarea.prototype.placeholderText_ = '';
 /**
  * Constants for event names.
  * @enum {string}
+ * @suppress {checkTypes}
  */
 goog.ui.Textarea.EventType = {
   RESIZE: 'resize'
