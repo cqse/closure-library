@@ -39,7 +39,7 @@ goog.require('goog.ui.ControlRenderer');
  *    </div>
  *
  * @constructor
- * @extends {goog.ui.ControlRenderer}
+ * @extends {goog.ui.ControlRenderer<goog.ui.MenuItem>}
  */
 goog.ui.MenuItemRenderer = function() {
   goog.ui.ControlRenderer.call(this);

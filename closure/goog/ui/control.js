@@ -1367,7 +1367,7 @@ goog.ui.Control.prototype.performActionInternal = function(e) {
   }
 
   var actionEvent =
-      new goog.events.Event(goog.ui.Component.EventType.ACTION, this);
+      /** @type {goog.events.BrowserEvent} */(new goog.events.Event(goog.ui.Component.EventType.ACTION, this));
   if (e) {
     actionEvent.altKey = e.altKey;
     actionEvent.ctrlKey = e.ctrlKey;
