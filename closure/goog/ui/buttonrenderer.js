@@ -43,7 +43,7 @@ goog.require('goog.ui.ControlRenderer');  // circular
  * For alternate renderers, see {@link goog.ui.NativeButtonRenderer},
  * {@link goog.ui.CustomButtonRenderer}, and {@link goog.ui.FlatButtonRenderer}.
  * @constructor
- * @extends {goog.ui.ControlRenderer}
+ * @extends {goog.ui.ControlRenderer<goog.ui.Button>}
  */
 goog.ui.ButtonRenderer = function() {
   goog.ui.ControlRenderer.call(this);
