@@ -850,6 +850,7 @@ goog.style.getClientPositionForElement_ = function(el) {
  * event, then the position of the first changedTouches will be returned.
  * @param {Element|Event|goog.events.Event} el Element or a mouse / touch event.
  * @return {!goog.math.Coordinate} The position.
+ * @suppress {checkTypes}
  */
 goog.style.getClientPosition = function(el) {
   goog.asserts.assert(el);

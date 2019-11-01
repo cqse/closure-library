@@ -82,6 +82,8 @@ goog.tagUnsealableClass(goog.ui.Palette);
 /**
  * Events fired by the palette object
  * @enum {string}
+ * @override
+ * @suppress {checkTypes}
  */
 goog.ui.Palette.EventType = {
   AFTER_HIGHLIGHT: goog.events.getUniqueId('afterhighlight')

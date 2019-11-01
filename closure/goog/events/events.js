@@ -439,6 +439,7 @@ goog.events.unlisten = function(src, type, listener, opt_options, opt_handler) {
  * @param {goog.events.Key} key The key returned by listen() for this
  *     event listener.
  * @return {boolean} indicating whether the listener was there to remove.
+ * @suppress {checkTypes}
  */
 goog.events.unlistenByKey = function(key) {
   // TODO(chrishenry): Remove this check when tests that rely on this
@@ -447,7 +448,7 @@ goog.events.unlistenByKey = function(key) {
     return false;
   }
 
-  var listener = key;
+  var listener = /** @type {?goog.events.Listener|undefined} */ (key);
   if (!listener || listener.removed) {
     return false;
   }

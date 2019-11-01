@@ -249,6 +249,7 @@ goog.fx.Animation.setAnimationWindow = function(animationWindow) {
  *     animation from the beginning if it has been paused.
  * @return {boolean} Whether animation was started.
  * @override
+ * @suppress {checkTypes}
  */
 goog.fx.Animation.prototype.play = function(opt_restart) {
   if (opt_restart || this.isStopped()) {

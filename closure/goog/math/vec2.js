@@ -118,6 +118,7 @@ goog.math.Vec2.prototype.squaredMagnitude = function() {
  * @param {number=} opt_sy The scale factor to use for the y dimension.
  * @return {!goog.math.Vec2} This vector after scaling.
  * @override
+ * @suppress {checkTypes}
  */
 // Since the implementation of Coordinate.scale() returns "this", we
 // can reuse that implementation here, and just recast the return type.
@@ -215,6 +216,8 @@ goog.math.Vec2.prototype.equals = function(b) {
  * @param {!goog.math.Coordinate} a The first vector.
  * @param {!goog.math.Coordinate} b The second vector.
  * @return {number} The distance.
+ * @override
+ * @suppress {checkTypes}
  */
 goog.math.Vec2.distance = goog.math.Coordinate.distance;
 
@@ -224,6 +227,8 @@ goog.math.Vec2.distance = goog.math.Coordinate.distance;
  * @param {!goog.math.Coordinate} a The first vector.
  * @param {!goog.math.Coordinate} b The second vector.
  * @return {number} The squared distance.
+ * @override
+ * @suppress {checkTypes}
  */
 goog.math.Vec2.squaredDistance = goog.math.Coordinate.squaredDistance;
 
@@ -233,6 +238,8 @@ goog.math.Vec2.squaredDistance = goog.math.Coordinate.squaredDistance;
  * @param {!goog.math.Coordinate} a The first vector.
  * @param {!goog.math.Coordinate} b The second vector.
  * @return {boolean} Whether the vectors have the same x and y coordinates.
+ * @override
+ * @suppress {checkTypes}
  */
 goog.math.Vec2.equals = goog.math.Coordinate.equals;
 
@@ -242,6 +249,7 @@ goog.math.Vec2.equals = goog.math.Coordinate.equals;
  * @param {!goog.math.Coordinate} a The first vector.
  * @param {!goog.math.Coordinate} b The second vector.
  * @return {!goog.math.Vec2} The sum vector.
+ * @override
  */
 goog.math.Vec2.sum = function(a, b) {
   return new goog.math.Vec2(a.x + b.x, a.y + b.y);
@@ -253,6 +261,7 @@ goog.math.Vec2.sum = function(a, b) {
  * @param {!goog.math.Coordinate} a The first vector.
  * @param {!goog.math.Coordinate} b The second vector.
  * @return {!goog.math.Vec2} The difference vector.
+ * @override
  */
 goog.math.Vec2.difference = function(a, b) {
   return new goog.math.Vec2(a.x - b.x, a.y - b.y);
