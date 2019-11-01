@@ -1122,6 +1122,8 @@ goog.ui.Dialog.prototype.onKey_ = function(e) {
  * @extends {goog.events.Event}
  */
 goog.ui.Dialog.Event = function(key, caption) {
+  goog.events.Event.call(this, goog.ui.Dialog.EventType.SELECT);
+  
   /** @const {!goog.ui.Dialog.EventType} */
   this.type = goog.ui.Dialog.EventType.SELECT;
   /** @const */
