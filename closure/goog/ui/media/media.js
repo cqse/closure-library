@@ -182,7 +182,7 @@ goog.ui.media.Media.prototype.getDataModel = function() {
  * and call them on this parent class setState ?
  *
  * @constructor
- * @extends {goog.ui.ControlRenderer}
+ * @extends {goog.ui.ControlRenderer<goog.ui.media.Media>}
  */
 goog.ui.media.MediaRenderer = function() {
   goog.ui.ControlRenderer.call(this);
@@ -196,7 +196,7 @@ goog.inherits(goog.ui.media.MediaRenderer, goog.ui.ControlRenderer);
  * caption with a `this.getClassClass()` + '-caption' css flag, so that
  * specific renderers can hide/show the caption as desired.
  *
- * @param {goog.ui.Control} control The control instance.
+ * @param {goog.ui.media.Media} control The control instance.
  * @return {!Element} The DOM structure that represents control.
  * @override
  */

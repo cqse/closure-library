@@ -25,7 +25,7 @@ goog.require('goog.ui.ControlRenderer');
 /**
  * Renderer for menu headers.
  * @constructor
- * @extends {goog.ui.ControlRenderer}
+ * @extends {goog.ui.ControlRenderer<goog.ui.MenuHeader>}
  */
 goog.ui.MenuHeaderRenderer = function() {
   goog.ui.ControlRenderer.call(this);

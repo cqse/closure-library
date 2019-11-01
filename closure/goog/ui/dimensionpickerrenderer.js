@@ -39,7 +39,7 @@ goog.require('goog.userAgent');
  * highlighted background.
  *
  * @constructor
- * @extends {goog.ui.ControlRenderer}
+ * @extends {goog.ui.ControlRenderer<goog.ui.DimensionPicker>}
  */
 goog.ui.DimensionPickerRenderer = function() {
   goog.ui.ControlRenderer.call(this);
@@ -119,7 +119,7 @@ goog.ui.DimensionPickerRenderer.prototype.canDecorate = function(element) {
 
 /**
  * Overrides {@link goog.ui.ControlRenderer#decorate} to decorate empty DIVs.
- * @param {goog.ui.Control} control goog.ui.DimensionPicker to decorate.
+ * @param {goog.ui.DimensionPicker} control goog.ui.DimensionPicker to decorate.
  * @param {Element} element The element to decorate.
  * @return {Element} The decorated element.
  * @override

@@ -35,7 +35,7 @@ goog.require('goog.ui.ControlRenderer');
  * Default renderer for {@link goog.ui.Checkbox}s.  Extends the superclass
  * to support checkbox states:
  * @constructor
- * @extends {goog.ui.ControlRenderer}
+ * @extends {goog.ui.ControlRenderer<goog.ui.Checkbox>}
  */
 goog.ui.CheckboxRenderer = function() {
   goog.ui.CheckboxRenderer.base(this, 'constructor');

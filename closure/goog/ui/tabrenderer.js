@@ -28,7 +28,7 @@ goog.require('goog.ui.ControlRenderer');
 /**
  * Default renderer for {@link goog.ui.Tab}s, based on the `TabPane` code.
  * @constructor
- * @extends {goog.ui.ControlRenderer}
+ * @extends {goog.ui.ControlRenderer<goog.ui.Tab>}
  */
 goog.ui.TabRenderer = function() {
   goog.ui.ControlRenderer.call(this);

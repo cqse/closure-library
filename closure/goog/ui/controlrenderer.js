@@ -55,6 +55,7 @@ goog.require('goog.userAgent');  // circular
  * Controls are stateful; renderers, on the other hand, should be stateless and
  * reusable.
  * @constructor
+ * @template CONTROL
  */
 goog.ui.ControlRenderer = function() {};
 goog.addSingletonGetter(goog.ui.ControlRenderer);
@@ -189,7 +190,7 @@ goog.ui.ControlRenderer.prototype.getAriaRole = function() {
 /**
  * Returns the control's contents wrapped in a DIV, with the renderer's own
  * CSS class and additional state-specific classes applied to it.
- * @param {goog.ui.Control} control Control to render.
+ * @param {CONTROL} control Control to render.
  * @return {Element} Root element for the control.
  */
 goog.ui.ControlRenderer.prototype.createDom = function(control) {
@@ -221,7 +222,7 @@ goog.ui.ControlRenderer.prototype.getContentElement = function(element) {
  * to/from its root element. May add additional combined classes as needed in
  * IE6 and lower. Because of this, subclasses should use this method when
  * modifying class names on the control's root element.
- * @param {goog.ui.Control|Element} control Control instance (or root element)
+ * @param {CONTROL|Element} control Control instance (or root element)
  *     to be updated.
  * @param {string} className CSS class name to add or remove.
  * @param {boolean} enable Whether to add or remove the class name.
@@ -250,7 +251,7 @@ goog.ui.ControlRenderer.prototype.enableClassName = function(
 /**
  * Updates the control's DOM by adding or removing the specified extra class
  * name to/from its element.
- * @param {goog.ui.Control} control Control to be updated.
+ * @param {CONTROL} control Control to be updated.
  * @param {string} className CSS class name to add or remove.
  * @param {boolean} enable Whether to add or remove the class name.
  */
@@ -278,7 +279,7 @@ goog.ui.ControlRenderer.prototype.canDecorate = function(element) {
  * Initializes the control's ID, content, and state based on the ID of the
  * element, its child nodes, and its CSS classes, respectively.  Returns the
  * element.
- * @param {goog.ui.Control} control Control instance to decorate the element.
+ * @param {CONTROL} control Control instance to decorate the element.
  * @param {Element} element Element to decorate.
  * @return {Element} Decorated element.
  */
@@ -369,7 +370,7 @@ goog.ui.ControlRenderer.prototype.decorate = function(control, element) {
  * Initializes the control's DOM by configuring properties that can only be set
  * after the DOM has entered the document.  This implementation sets up BiDi
  * and keyboard focus.  Called from {@link goog.ui.Control#enterDocument}.
- * @param {goog.ui.Control} control Control whose DOM is to be initialized
+ * @param {CONTROL} control Control whose DOM is to be initialized
  *     as it enters the document.
  */
 goog.ui.ControlRenderer.prototype.initializeDom = function(control) {
@@ -493,7 +494,7 @@ goog.ui.ControlRenderer.prototype.setRightToLeft = function(
 /**
  * Returns true if the control's key event target supports keyboard focus
  * (based on its `tabIndex` attribute), false otherwise.
- * @param {goog.ui.Control} control Control whose key event target is to be
+ * @param {CONTROL} control Control whose key event target is to be
  *     checked.
  * @return {boolean} Whether the control's key event target is focusable.
  */
@@ -511,7 +512,7 @@ goog.ui.ControlRenderer.prototype.isFocusable = function(control) {
  * Updates the control's key event target to make it focusable or non-focusable
  * via its `tabIndex` attribute.  Does nothing if the control doesn't
  * support the `FOCUSED` state, or if it has no key event target.
- * @param {goog.ui.Control} control Control whose key event target is to be
+ * @param {CONTROL} control Control whose key event target is to be
  *     updated.
  * @param {boolean} focusable Whether to enable keyboard focus support on the
  *     control's key event target.
@@ -562,7 +563,7 @@ goog.ui.ControlRenderer.prototype.setVisible = function(element, visible) {
 
 /**
  * Updates the appearance of the control in response to a state change.
- * @param {goog.ui.Control} control Control instance to update.
+ * @param {CONTROL} control Control instance to update.
  * @param {goog.ui.Component.State} state State to enable or disable.
  * @param {boolean} enable Whether the control is entering or exiting the state.
  */
@@ -648,7 +649,7 @@ goog.ui.ControlRenderer.isAriaState_ = function(attr) {
  * of the given element.  Renderers that create more complex DOM structures
  * must override this method accordingly.
  * @param {Element} element The control's root element.
- * @param {goog.ui.ControlContent} content Text caption or DOM structure to be
+ * @param {CONTROLContent} content Text caption or DOM structure to be
  *     set as the control's content. The DOM nodes will not be cloned, they
  *     will only moved under the content element of the control.
  */
@@ -691,7 +692,7 @@ goog.ui.ControlRenderer.prototype.setContent = function(element, content) {
  * Returns the element within the component's DOM that should receive keyboard
  * focus (null if none).  The default implementation returns the control's root
  * element.
- * @param {goog.ui.Control} control Control whose key event target is to be
+ * @param {CONTROL} control Control whose key event target is to be
  *     returned.
  * @return {Element} The key event target.
  */
@@ -763,7 +764,7 @@ goog.ui.ControlRenderer.prototype.getStructuralCssClass = function() {
  * </ol>
  * Since all controls have at least one renderer-specific CSS class name, this
  * method is guaranteed to return an array of at least one element.
- * @param {goog.ui.Control} control Control whose CSS classes are to be
+ * @param {CONTROL} control Control whose CSS classes are to be
  *     returned.
  * @return {!Array<string>} Array of CSS class names applicable to the control.
  * @protected
