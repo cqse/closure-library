@@ -855,7 +855,7 @@ goog.date.Date.prototype.buildDate_ = function(fullYear, monthNumber, date) {
  * @private
  */
 goog.date.Date.prototype.firstDayOfWeek_ =
-    goog.i18n.DateTimeSymbols.FIRSTDAYOFWEEK;
+    /** @type {number} */(goog.i18n.DateTimeSymbols.FIRSTDAYOFWEEK);
 
 
 /**
@@ -864,7 +864,7 @@ goog.date.Date.prototype.firstDayOfWeek_ =
  * @private
  */
 goog.date.Date.prototype.firstWeekCutOffDay_ =
-    goog.i18n.DateTimeSymbols.FIRSTWEEKCUTOFFDAY;
+    /** @type {number} */(goog.i18n.DateTimeSymbols.FIRSTWEEKCUTOFFDAY);
 
 
 /**

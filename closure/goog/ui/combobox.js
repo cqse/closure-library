@@ -92,7 +92,7 @@ goog.ui.ComboBox.prototype.logger_ = goog.log.getLogger('goog.ui.ComboBox');
  * @type {boolean}
  * @private
  */
-goog.ui.ComboBox.prototype.enabled_;
+goog.ui.ComboBox.prototype.enabled_ = false;
 
 
 /**
@@ -106,7 +106,7 @@ goog.ui.ComboBox.prototype.keyHandler_;
 /**
  * Input handler to take care of firing events when the user inputs text in
  * the input.
- * @type {goog.events.InputHandler?}
+ * @type {?goog.events.InputHandler}
  * @private
  */
 goog.ui.ComboBox.prototype.inputHandler_ = null;
@@ -122,7 +122,7 @@ goog.ui.ComboBox.prototype.lastToken_ = null;
 
 /**
  * A LabelInput control that manages the focus/blur state of the input box.
- * @type {goog.ui.LabelInput?}
+ * @type {?goog.ui.LabelInput}
  * @private
  */
 goog.ui.ComboBox.prototype.labelInput_ = null;
@@ -130,7 +130,7 @@ goog.ui.ComboBox.prototype.labelInput_ = null;
 
 /**
  * Drop down menu for the combo box.  Will be created at construction time.
- * @type {goog.ui.Menu?}
+ * @type {?goog.ui.Menu}
  * @private
  */
 goog.ui.ComboBox.prototype.menu_ = null;

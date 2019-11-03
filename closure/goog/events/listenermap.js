@@ -160,7 +160,7 @@ goog.events.ListenerMap.prototype.remove = function(
  * @return {boolean} Whether the listener is removed.
  */
 goog.events.ListenerMap.prototype.removeByKey = function(listener) {
-  var type = listener.type;
+  var type = /** @type {string}*/(listener.type);
   if (!(type in this.listeners)) {
     return false;
   }

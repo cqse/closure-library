@@ -106,9 +106,9 @@ goog.soy.data.SanitizedContentKind = {
  * templates.
  *
  * @constructor
+ * @abstract
  */
 goog.soy.data.SanitizedContent = function() {
-  throw new Error('Do not instantiate directly');
 };
 
 
@@ -131,7 +131,7 @@ goog.soy.data.SanitizedContent.prototype.contentDir = null;
  * The already-safe content.
  * @protected {string}
  */
-goog.soy.data.SanitizedContent.prototype.content;
+goog.soy.data.SanitizedContent.prototype.content = '';
 
 
 /**

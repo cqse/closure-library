@@ -305,7 +305,7 @@ goog.ui.ac.AutoComplete.prototype.getRenderer = function() {
  *
  * See constructor documentation for the expected renderer API.
  *
- * @param {goog.events.EventTarget} renderer The renderer.
+ * @param {goog.ui.ac.Renderer} renderer The renderer.
  * @protected
  */
 goog.ui.ac.AutoComplete.prototype.setRenderer = function(renderer) {
