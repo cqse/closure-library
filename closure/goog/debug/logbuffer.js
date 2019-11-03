@@ -68,7 +68,7 @@ goog.debug.LogBuffer.CAPACITY = goog.define('goog.debug.LogBuffer.CAPACITY', 0);
  * @type {!Array<!goog.debug.LogRecord|undefined>}
  * @private
  */
-goog.debug.LogBuffer.prototype.buffer_;
+goog.debug.LogBuffer.prototype.buffer_ = [];
 
 
 /**
@@ -76,7 +76,7 @@ goog.debug.LogBuffer.prototype.buffer_;
  * @type {number}
  * @private
  */
-goog.debug.LogBuffer.prototype.curIndex_;
+goog.debug.LogBuffer.prototype.curIndex_ = -1;
 
 
 /**
@@ -84,7 +84,7 @@ goog.debug.LogBuffer.prototype.curIndex_;
  * @type {boolean}
  * @private
  */
-goog.debug.LogBuffer.prototype.isFull_;
+goog.debug.LogBuffer.prototype.isFull_ = false;
 
 
 /**

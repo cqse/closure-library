@@ -43,6 +43,7 @@ goog.addSingletonGetter(goog.ui.TextareaRenderer);
  * Default CSS class to be applied to the root element of components rendered
  * by this renderer.
  * @type {string}
+ * @override
  */
 goog.ui.TextareaRenderer.CSS_CLASS = goog.getCssName('goog-textarea');
 

@@ -514,6 +514,7 @@ goog.ui.tree.BaseNode.EMPTY_CHILDREN_ = [];
 /**
  * @param {number} index 0-based index.
  * @return {goog.ui.tree.BaseNode} The child at the given index; null if none.
+ * @override
  */
 goog.ui.tree.BaseNode.prototype.getChildAt;
 
@@ -927,6 +928,7 @@ goog.ui.tree.BaseNode.prototype.getIconSafeHtml = function() {
 /**
  * Gets the calculated icon class.
  * @protected
+ * @return {string}
  */
 goog.ui.tree.BaseNode.prototype.getCalculatedIconClass = goog.abstractMethod;
 
@@ -1395,6 +1397,13 @@ goog.ui.tree.BaseNode.prototype.onKeyDown = function(e) {
   return handled;
 };
 
+/**
+ * @override
+ * @return {goog.ui.tree.BaseNode}
+ */
+goog.ui.tree.BaseNode.prototype.getParent = function() {
+  return /** @type {goog.ui.tree.BaseNode} */(goog.ui.tree.BaseNode.superClass_.getParent.call(this));
+};
 
 
 /**
