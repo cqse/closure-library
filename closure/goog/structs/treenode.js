@@ -134,6 +134,7 @@ goog.structs.TreeNode.prototype.getChildren = function() {
  * @param {number} index Child index.
  * @return {goog.structs.TreeNode<KEY, VALUE>} The node at the given index or
  *     null if not found.
+ * @override
  */
 goog.structs.TreeNode.prototype.getChildAt = function(index) {
   return this.getChildren()[index] || null;

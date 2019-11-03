@@ -104,7 +104,7 @@ goog.ui.PopupColorPicker.prototype.lastTarget_ = null;
 
 
 /** @private {boolean} */
-goog.ui.PopupColorPicker.prototype.rememberSelection_;
+goog.ui.PopupColorPicker.prototype.rememberSelection_ = false;
 
 
 /**

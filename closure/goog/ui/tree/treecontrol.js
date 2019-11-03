@@ -617,5 +617,6 @@ goog.ui.tree.TreeControl.prototype.clearTypeAhead = function() {
 
 /**
  * A default configuration for the tree.
+ * @override
  */
 goog.ui.tree.TreeControl.defaultConfig = goog.ui.tree.BaseNode.defaultConfig;

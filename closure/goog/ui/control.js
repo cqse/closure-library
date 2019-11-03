@@ -1355,6 +1355,7 @@ goog.ui.Control.prototype.handleDblClick = function(e) {
  * @param {goog.events.Event} e Event that triggered the action.
  * @return {boolean} Whether the action is allowed to proceed.
  * @protected
+ * @suppress {checkTypes}
  */
 goog.ui.Control.prototype.performActionInternal = function(e) {
   if (this.isAutoState(goog.ui.Component.State.CHECKED)) {

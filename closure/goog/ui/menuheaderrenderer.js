@@ -38,6 +38,7 @@ goog.addSingletonGetter(goog.ui.MenuHeaderRenderer);
  * Default CSS class to be applied to the root element of components rendered
  * by this renderer.
  * @type {string}
+ * @override
  */
 goog.ui.MenuHeaderRenderer.CSS_CLASS = goog.getCssName('goog-menuheader');
 

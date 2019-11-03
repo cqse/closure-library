@@ -106,6 +106,12 @@ goog.debug.Trace_ = function() {
   this.nextId_ = 1;
 
   /**
+   * @private
+   * @type {Object}
+   */
+  this.gcTracer_ = null;
+
+  /**
    * A pool for goog.debug.Trace_.Event_ objects so we don't keep creating and
    * garbage collecting these (which is very expensive in IE6).
    * @private {!goog.structs.SimplePool}
@@ -792,7 +798,7 @@ goog.debug.Trace_.prototype.toString = function() {
       indent.pop();
     }
     sb.push(' ', e.toTraceString(this.startTime_, etime, indent.join('')));
-    etime = e.eventTime;
+    etime = /** @type {number} */(e.eventTime);
     sb.push('\n');
     if (e.eventType == goog.debug.Trace_.EventType.START) {
       indent.push('|  ');
