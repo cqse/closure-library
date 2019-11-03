@@ -78,6 +78,7 @@ goog.ui.PaletteRenderer.cellId_ = 0;
  * Default CSS class to be applied to the root element of components rendered
  * by this renderer.
  * @type {string}
+ * @override
  */
 goog.ui.PaletteRenderer.CSS_CLASS = goog.getCssName('goog-palette');
 
@@ -109,7 +110,7 @@ goog.ui.PaletteRenderer.prototype.createDom = function(palette) {
   // be called after createDom.
   goog.dom.dataset.set(
       element, goog.ui.PaletteRenderer.GRID_WIDTH_ATTRIBUTE,
-      palette.getSize().width);
+      ''+palette.getSize().width);
   return element;
 };
 

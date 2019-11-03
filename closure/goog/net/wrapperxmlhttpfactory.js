@@ -67,3 +67,9 @@ goog.net.WrapperXmlHttpFactory.prototype.createInstance = function() {
 goog.net.WrapperXmlHttpFactory.prototype.getOptions = function() {
   return this.optionsFactory_();
 };
+
+/**
+ * Never called as the only callsite is overwritten. 
+ * @override
+ */
+goog.net.WrapperXmlHttpFactory.prototype.internalGetOptions = function() {};

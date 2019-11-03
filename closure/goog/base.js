@@ -30,7 +30,6 @@ goog.provide('goog');
 /**
  * Reference to the global context.  In most cases this will be 'window'.
  * @const
- * @type {!Global}
  */
 goog.global = window;
 
@@ -248,7 +247,7 @@ goog.STRICT_MODE_COMPATIBLE = goog.define('goog.STRICT_MODE_COMPATIBLE', false);
  * @define {boolean} Whether code that calls {@link goog.setTestOnly} should
  *     be disallowed in the compilation unit.
  */
-goog.DISALLOW_TEST_ONLY_CODE = goog.define('goog.DISALLOW_TEST_ONLY_CODE', true && !goog.DEBUG);
+goog.DISALLOW_TEST_ONLY_CODE = goog.define('goog.DISALLOW_TEST_ONLY_CODE', !goog.DEBUG);
 
 
 /**
@@ -398,6 +397,16 @@ goog.globalize = function(obj, opt_global) {
   var global = opt_global || goog.global;
   for (var x in obj) {
     global[x] = obj[x];
+  }
+};
+
+/**
+ * @param {string} msg
+ * @private
+ */
+goog.logToConsole_ = function(msg) {
+  if (goog.global.console) {
+    goog.global.console['error'](msg);
   }
 };
 
@@ -1667,9 +1676,6 @@ goog.defineClass.applyProperties_ = function(target, source) {
  * @param {!Function} ctr The legacy constructor to tag as unsealable.
  */
 goog.tagUnsealableClass = function(ctr) {
-  if (!COMPILED && goog.defineClass.SEAL_CLASS_INSTANCES) {
-    ctr.prototype[goog.UNSEALABLE_CONSTRUCTOR_PROPERTY_] = true;
-  }
 };
 
 
@@ -1678,3 +1684,56 @@ goog.tagUnsealableClass = function(ctr) {
  * @const @private {string}
  */
 goog.UNSEALABLE_CONSTRUCTOR_PROPERTY_ = 'goog_defineClass_legacy_unsealable';
+
+
+/**
+ * @define {string} Trusted Types policy name. If non-empty then Closure will
+ * use Trusted Types.
+ */
+goog.TRUSTED_TYPES_POLICY_NAME =
+    goog.define('goog.TRUSTED_TYPES_POLICY_NAME', '');
+
+
+/**
+ * Creates Trusted Types policy if Trusted Types are supported by the browser.
+ * The policy just blesses any string as a Trusted Type. It is not visibility
+ * restricted because anyone can also call TrustedTypes.createPolicy directly.
+ * However, the allowed names should be restricted by a HTTP header and the
+ * reference to the created policy should be visibility restricted.
+ * @param {string} name
+ * @return {?TrustedTypePolicy}
+ */
+goog.createTrustedTypesPolicy = function(name) {
+  var policy = null;
+  // TODO(koto): Remove window.TrustedTypes variant when the newer API ships.
+  var policyFactory = goog.global.trustedTypes || goog.global.TrustedTypes;
+  if (!policyFactory || !policyFactory.createPolicy) {
+    return policy;
+  }
+  // TrustedTypes.createPolicy throws if called with a name that is already
+  // registered, even in report-only mode. Until the API changes, catch the
+  // error not to break the applications functionally. In such case, the code
+  // will fall back to using regular Safe Types.
+  // TODO(koto): Remove catching once createPolicy API stops throwing.
+  try {
+    policy = policyFactory.createPolicy(name, {
+      createHTML: goog.identity_,
+      createScript: goog.identity_,
+      createScriptURL: goog.identity_,
+      createURL: goog.identity_
+    });
+  } catch (e) {
+    goog.logToConsole_(e.message);
+  }
+  return policy;
+};
+
+/**
+ * Returns the parameter.
+ * @param {string} s
+ * @return {string}
+ * @private
+ */
+goog.identity_ = function(s) {
+  return s;
+};

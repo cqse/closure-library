@@ -1135,8 +1135,10 @@ goog.ui.ac.Renderer.CustomRenderer = function() {};
  * rows, Array: The current set of rows being displayed.
  * token, string: The current token that has been entered. *
  *
- * @type {function(goog.ui.ac.Renderer, Element, Array, string)|
- *        null|undefined}
+ * @param {goog.ui.ac.Renderer} renderer
+ * @param {Element} element
+ * @param {Array} rows
+ * @param {string} token
  */
 goog.ui.ac.Renderer.CustomRenderer.prototype.render = function(
     renderer, element, rows, token) {};

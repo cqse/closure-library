@@ -98,12 +98,9 @@ goog.Thenable.IMPLEMENTED_BY_PROP = '$goog_Thenable';
  *     corresponding class must have already implemented the interface.
  */
 goog.Thenable.addImplementation = function(ctor) {
-  if (COMPILED) {
-    ctor.prototype[goog.Thenable.IMPLEMENTED_BY_PROP] = true;
-  } else {
-    // Avoids dictionary access in uncompiled mode.
-    ctor.prototype.$goog_Thenable = true;
-  }
+  ctor.prototype[goog.Thenable.IMPLEMENTED_BY_PROP] = true;
+  // Avoids dictionary access in uncompiled mode.
+  // ctor.prototype.$goog_Thenable = true;
 };
 
 
@@ -117,10 +114,8 @@ goog.Thenable.isImplementedBy = function(object) {
     return false;
   }
   try {
-    if (COMPILED) {
-      return !!object[goog.Thenable.IMPLEMENTED_BY_PROP];
-    }
-    return !!object.$goog_Thenable;
+    return !!object[goog.Thenable.IMPLEMENTED_BY_PROP];
+    //return !!object.$goog_Thenable;
   } catch (e) {
     // Property access seems to be forbidden.
     return false;

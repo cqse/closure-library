@@ -649,7 +649,7 @@ goog.ui.ControlRenderer.isAriaState_ = function(attr) {
  * of the given element.  Renderers that create more complex DOM structures
  * must override this method accordingly.
  * @param {Element} element The control's root element.
- * @param {CONTROLContent} content Text caption or DOM structure to be
+ * @param {goog.ui.ControlContent} content Text caption or DOM structure to be
  *     set as the control's content. The DOM nodes will not be cloned, they
  *     will only moved under the content element of the control.
  */
