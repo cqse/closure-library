@@ -25,6 +25,7 @@ goog.forwardDeclare('goog.Promise');
  *
  * @interface
  * @template TYPE
+ * @suppress {checkTypes} 
  */
 goog.promise.Resolver = function() {};
 

@@ -72,6 +72,7 @@ goog.scope(function() {
  *     creating XMLHttpRequest objects.
  * @constructor
  * @extends {goog.events.EventTarget}
+ * @suppress {checkTypes} JSC_IN_USED_WITH_STRUCT: Cannot use the IN operator with structs on this.xhr_
  */
 goog.net.XhrIo = function(opt_xmlHttpFactory) {
   XhrIo.base(this, 'constructor');
@@ -1049,7 +1050,7 @@ goog.net.XhrIo.prototype.getStatus = function() {
    */
   try {
     return this.getReadyState() > goog.net.XmlHttp.ReadyState.LOADED ?
-        this.xhr_.status :
+        /** @type {number} */(this.xhr_.status) :
         -1;
   } catch (e) {
     return -1;
@@ -1070,7 +1071,7 @@ goog.net.XhrIo.prototype.getStatusText = function() {
    */
   try {
     return this.getReadyState() > goog.net.XmlHttp.ReadyState.LOADED ?
-        this.xhr_.statusText :
+        String(this.xhr_.statusText) :
         '';
   } catch (e) {
     goog.log.fine(this.logger_, 'Can not get status: ' + e.message);
@@ -1095,7 +1096,7 @@ goog.net.XhrIo.prototype.getLastUri = function() {
  */
 goog.net.XhrIo.prototype.getResponseText = function() {
   try {
-    return this.xhr_ ? this.xhr_.responseText : '';
+    return this.xhr_ ? String(this.xhr_.responseText) : '';
   } catch (e) {
     // http://www.w3.org/TR/XMLHttpRequest/#the-responsetext-attribute
     // states that responseText should return '' (and responseXML null)
