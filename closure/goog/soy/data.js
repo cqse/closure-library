@@ -107,6 +107,7 @@ goog.soy.data.SanitizedContentKind = {
  *
  * @constructor
  * @abstract
+ * @suppress {checkTypes} 
  */
 goog.soy.data.SanitizedContent = function() {
 };
