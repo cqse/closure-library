@@ -40,6 +40,7 @@ goog.require('goog.structs.SimplePool');
  * adding listeners.
  * @constructor
  * @private
+ * @suppress {checkTypes}
  */
 goog.debug.Trace_ = function() {
 
@@ -247,6 +248,7 @@ goog.debug.Trace_.Stat_.prototype.toString = function() {
  * of a tracer.
  * @constructor
  * @private
+ * @suppress {checkTypes}
  */
 goog.debug.Trace_.Event_ = function() {
   // the fields are different for different events - see usage in code
