@@ -76,7 +76,7 @@ goog.ui.Tooltip = function(opt_el, opt_str, opt_domHelper) {
    */
   this.dom_ = tempDom;
 
-  // EDITED: Called here because of new positioning of super() call
+  // EDITED: Called here because of moved super() call
   this.setElement(element);
 
   /**

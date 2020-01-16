@@ -68,14 +68,14 @@ goog.ui.Container = function(opt_orientation, opt_renderer, opt_domHelper) {
 
   /**
    * Renderer for the container.  Defaults to {@link ContainerRenderer}.
-   * @type {!T}
+   * @type {T|undefined}
    * @private
    */
   this.renderer_ = opt_renderer || goog.ui.ContainerRenderer.getInstance();
 
   /**
    * Container orientation; determines layout and default keyboard navigation.
-   * @type {!Orientation}
+   * @type {?Orientation}
    * @private
    */
   this.orientation_ = opt_orientation || this.renderer_.getDefaultOrientation();
