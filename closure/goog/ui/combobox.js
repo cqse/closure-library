@@ -61,10 +61,27 @@ goog.require('goog.userAgent');
 goog.ui.ComboBox = function(opt_domHelper, opt_menu, opt_labelInput) {
   goog.ui.Component.call(this, opt_domHelper);
 
+  /**
+   * A LabelInput control that manages the focus/blur state of the input box.
+   * @type {!goog.ui.LabelInput}
+   * @private
+   */
   this.labelInput_ = opt_labelInput || new goog.ui.LabelInput();
+
+  /**
+   * Whether the combo box is enabled.
+   * @type {boolean}
+   * @private
+   */
   this.enabled_ = true;
 
   // TODO(user): Allow lazy creation of menus/menu items
+
+  /**
+   * Drop down menu for the combo box.  Will be created at construction time.
+   * @type {!goog.ui.Menu}
+   * @private
+   */
   this.menu_ = opt_menu || new goog.ui.Menu(this.getDomHelper());
   this.setupMenu_();
 };
@@ -85,14 +102,6 @@ goog.ui.ComboBox.BLUR_DISMISS_TIMER_MS = 250;
  * @private
  */
 goog.ui.ComboBox.prototype.logger_ = goog.log.getLogger('goog.ui.ComboBox');
-
-
-/**
- * Whether the combo box is enabled.
- * @type {boolean}
- * @private
- */
-goog.ui.ComboBox.prototype.enabled_ = false;
 
 
 /**
@@ -118,22 +127,6 @@ goog.ui.ComboBox.prototype.inputHandler_ = null;
  * @private
  */
 goog.ui.ComboBox.prototype.lastToken_ = null;
-
-
-/**
- * A LabelInput control that manages the focus/blur state of the input box.
- * @type {?goog.ui.LabelInput}
- * @private
- */
-goog.ui.ComboBox.prototype.labelInput_ = null;
-
-
-/**
- * Drop down menu for the combo box.  Will be created at construction time.
- * @type {?goog.ui.Menu}
- * @private
- */
-goog.ui.ComboBox.prototype.menu_ = null;
 
 
 /**

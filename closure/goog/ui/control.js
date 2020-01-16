@@ -77,6 +77,12 @@ goog.require('goog.userAgent');
  */
 goog.ui.Control = function(opt_content, opt_renderer, opt_domHelper) {
   goog.ui.Component.call(this, opt_domHelper);
+  
+  /**
+   * Renderer associated with the component.
+   * @type {T}
+   * @private
+   */
   this.renderer_ =
       opt_renderer || goog.ui.registry.getDefaultRenderer(this.constructor);
   this.setContentInternal(opt_content !== undefined ? opt_content : null);
@@ -122,14 +128,6 @@ goog.ui.Control.registerDecorator = goog.ui.registry.setDecoratorByClassName;
 goog.ui.Control.getDecorator =
     /** @type {function(Element): goog.ui.Control} */ (
         goog.ui.registry.getDecorator);
-
-
-/**
- * Renderer associated with the component.
- * @type {T|undefined}
- * @private
- */
-goog.ui.Control.prototype.renderer_;
 
 
 /**
