@@ -63,7 +63,7 @@ goog.ui.ComboBox = function(opt_domHelper, opt_menu, opt_labelInput) {
 
   /**
    * A LabelInput control that manages the focus/blur state of the input box.
-   * @type {!goog.ui.LabelInput}
+   * @type {?goog.ui.LabelInput}
    * @private
    */
   this.labelInput_ = opt_labelInput || new goog.ui.LabelInput();
@@ -79,7 +79,7 @@ goog.ui.ComboBox = function(opt_domHelper, opt_menu, opt_labelInput) {
 
   /**
    * Drop down menu for the combo box.  Will be created at construction time.
-   * @type {!goog.ui.Menu}
+   * @type {?goog.ui.Menu}
    * @private
    */
   this.menu_ = opt_menu || new goog.ui.Menu(this.getDomHelper());

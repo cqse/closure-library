@@ -19,13 +19,6 @@
 
 goog.provide('goog.events.Event');
 goog.provide('goog.events.EventLike');
-
-/**
- * goog.events.Event no longer depends on goog.Disposable. Keep requiring
- * goog.Disposable here to not break projects which assume this dependency.
- * @suppress {extraRequire}
- */
-goog.require('goog.Disposable');
 goog.require('goog.events.EventId');
 
 
