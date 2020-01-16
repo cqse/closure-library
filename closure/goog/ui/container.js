@@ -65,7 +65,19 @@ goog.require('goog.ui.Control');
  */
 goog.ui.Container = function(opt_orientation, opt_renderer, opt_domHelper) {
   goog.ui.Component.call(this, opt_domHelper);
+
+  /**
+   * Renderer for the container.  Defaults to {@link ContainerRenderer}.
+   * @type {!T}
+   * @private
+   */
   this.renderer_ = opt_renderer || goog.ui.ContainerRenderer.getInstance();
+
+  /**
+   * Container orientation; determines layout and default keyboard navigation.
+   * @type {!Orientation}
+   * @private
+   */
   this.orientation_ = opt_orientation || this.renderer_.getDefaultOrientation();
 };
 goog.inherits(goog.ui.Container, goog.ui.Component);
@@ -121,22 +133,6 @@ goog.ui.Container.prototype.keyEventTarget_ = null;
  * @private
  */
 goog.ui.Container.prototype.keyHandler_ = null;
-
-
-/**
- * Renderer for the container.  Defaults to {@link goog.ui.ContainerRenderer}.
- * @type {T?}
- * @private
- */
-goog.ui.Container.prototype.renderer_ = null;
-
-
-/**
- * Container orientation; determines layout and default keyboard navigation.
- * @type {?goog.ui.Container.Orientation}
- * @private
- */
-goog.ui.Container.prototype.orientation_ = null;
 
 
 /**

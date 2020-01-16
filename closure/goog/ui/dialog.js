@@ -96,18 +96,15 @@ goog.ui.Dialog = function(opt_class, opt_useIframeMask, opt_domHelper) {
    */
   this.class_ = opt_class || goog.getCssName('modal-dialog');
 
+  /**
+   * Button set.  Default to Ok/Cancel.
+   * @type {goog.ui.Dialog.ButtonSet}
+   * @private
+   */
   this.buttons_ = goog.ui.Dialog.ButtonSet.createOkCancel();
 };
 goog.inherits(goog.ui.Dialog, goog.ui.ModalPopup);
 goog.tagUnsealableClass(goog.ui.Dialog);
-
-
-/**
- * Button set.  Default to Ok/Cancel.
- * @type {goog.ui.Dialog.ButtonSet}
- * @private
- */
-goog.ui.Dialog.prototype.buttons_;
 
 
 /**
