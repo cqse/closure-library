@@ -31,7 +31,7 @@ goog.provide('goog');
  * Reference to the global context.  In most cases this will be 'window'.
  * @const
  */
-goog.global = window;
+// goog.global = window;
 
 
 /**
@@ -50,7 +50,7 @@ goog.global = window;
  *
  * @type {Object<string, (string|number|boolean)>|undefined}
  */
-goog.global.CLOSURE_UNCOMPILED_DEFINES;
+// goog.global.CLOSURE_UNCOMPILED_DEFINES;
 
 
 /**
@@ -71,7 +71,7 @@ goog.global.CLOSURE_UNCOMPILED_DEFINES;
  *
  * @type {Object<string, (string|number|boolean)>|undefined}
  */
-goog.global.CLOSURE_DEFINES;
+// goog.global.CLOSURE_DEFINES;
 
 
 /**
