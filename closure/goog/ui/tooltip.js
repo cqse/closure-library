@@ -68,7 +68,7 @@ goog.ui.Tooltip = function(opt_el, opt_str, opt_domHelper) {
     'style': 'position:absolute;display:none;'
   });
   //EDITED: Added true
-  goog.ui.Popup.call(this, element, true);
+  goog.ui.Popup.call(this, element, undefined, true);
 
   /**
    * Dom Helper

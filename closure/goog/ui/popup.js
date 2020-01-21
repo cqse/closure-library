@@ -46,7 +46,7 @@ goog.require('goog.ui.PopupBase');
  * @extends {goog.ui.PopupBase}
  */
 goog.ui.Popup = function(opt_element, opt_position, opt_dontSetElement) {
-  goog.ui.PopupBase.call(this, opt_element, opt_dontSetElement);
+  goog.ui.PopupBase.call(this, opt_element, undefined, opt_dontSetElement);
   
   /**
    * Corner of the popup to used in the positioning algorithm.
