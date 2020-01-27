@@ -23,25 +23,6 @@ goog.require('goog.asserts');
 
 
 /**
- * @define {boolean} NATIVE_ARRAY_PROTOTYPES indicates whether the code should
- * rely on Array.prototype functions, if available.
- *
- * The Array.prototype functions can be defined by external libraries like
- * Prototype and setting this flag to false forces closure to use its own
- * goog.array implementation.
- *
- * If your javascript can be loaded by a third party site and you are wary about
- * relying on the prototype functions, specify
- * "--define goog.NATIVE_ARRAY_PROTOTYPES=false" to the JSCompiler.
- *
- * Setting goog.TRUSTED_SITE to false will automatically set
- * NATIVE_ARRAY_PROTOTYPES to false.
- */
-goog.NATIVE_ARRAY_PROTOTYPES =
-    goog.define('goog.NATIVE_ARRAY_PROTOTYPES', goog.TRUSTED_SITE);
-
-
-/**
  * @define {boolean} If true, JSCompiler will use the native implementation of
  * array functions where appropriate (e.g., `Array#filter`) and remove the
  * unused pure JS implementation.
@@ -90,32 +71,13 @@ goog.array.last = goog.array.peek;
  *     omitted the search starts at index 0.
  * @return {number} The index of the first matching array element.
  * @template T
+ * @deprecated Use Array.indexOf directly
  */
-goog.array.indexOf = goog.NATIVE_ARRAY_PROTOTYPES &&
-        (goog.array.ASSUME_NATIVE_FUNCTIONS || Array.prototype.indexOf) ?
+goog.array.indexOf =
     function(arr, obj, opt_fromIndex) {
       goog.asserts.assert(arr.length != null);
 
       return Array.prototype.indexOf.call(arr, obj, opt_fromIndex);
-    } :
-    function(arr, obj, opt_fromIndex) {
-      var fromIndex = opt_fromIndex == null ?
-          0 :
-          (opt_fromIndex < 0 ? Math.max(0, arr.length + opt_fromIndex) :
-                               opt_fromIndex);
-
-      if (typeof arr === 'string') {
-        // Array.prototype.indexOf uses === so only strings should be found.
-        if (typeof obj !== 'string' || obj.length != 1) {
-          return -1;
-        }
-        return arr.indexOf(obj, fromIndex);
-      }
-
-      for (var i = fromIndex; i < arr.length; i++) {
-        if (i in arr && arr[i] === obj) return i;
-      }
-      return -1;
     };
 
 
@@ -131,9 +93,9 @@ goog.array.indexOf = goog.NATIVE_ARRAY_PROTOTYPES &&
  *     omitted the search starts at the end of the array.
  * @return {number} The index of the last matching array element.
  * @template T
+ * @deprecated Use Array.lastIndexOf directly
  */
-goog.array.lastIndexOf = goog.NATIVE_ARRAY_PROTOTYPES &&
-        (goog.array.ASSUME_NATIVE_FUNCTIONS || Array.prototype.lastIndexOf) ?
+goog.array.lastIndexOf =
     function(arr, obj, opt_fromIndex) {
       goog.asserts.assert(arr.length != null);
 
@@ -141,26 +103,6 @@ goog.array.lastIndexOf = goog.NATIVE_ARRAY_PROTOTYPES &&
       // leads it to always return -1
       var fromIndex = opt_fromIndex == null ? arr.length - 1 : opt_fromIndex;
       return Array.prototype.lastIndexOf.call(arr, obj, fromIndex);
-    } :
-    function(arr, obj, opt_fromIndex) {
-      var fromIndex = opt_fromIndex == null ? arr.length - 1 : opt_fromIndex;
-
-      if (fromIndex < 0) {
-        fromIndex = Math.max(0, arr.length + fromIndex);
-      }
-
-      if (typeof arr === 'string') {
-        // Array.prototype.lastIndexOf uses === so only strings should be found.
-        if (typeof obj !== 'string' || obj.length != 1) {
-          return -1;
-        }
-        return arr.lastIndexOf(obj, fromIndex);
-      }
-
-      for (var i = fromIndex; i >= 0; i--) {
-        if (i in arr && arr[i] === obj) return i;
-      }
-      return -1;
     };
 
 
@@ -175,22 +117,13 @@ goog.array.lastIndexOf = goog.NATIVE_ARRAY_PROTOTYPES &&
  *     array). The return value is ignored.
  * @param {S=} opt_obj The object to be used as the value of 'this' within f.
  * @template T,S
+ * @deprecated Use Array.forEach directly
  */
-goog.array.forEach = goog.NATIVE_ARRAY_PROTOTYPES &&
-        (goog.array.ASSUME_NATIVE_FUNCTIONS || Array.prototype.forEach) ?
+goog.array.forEach =
     function(arr, f, opt_obj) {
       goog.asserts.assert(arr.length != null);
 
       Array.prototype.forEach.call(arr, f, opt_obj);
-    } :
-    function(arr, f, opt_obj) {
-      var l = arr.length;  // must be fixed during loop... see docs
-      var arr2 = (typeof arr === 'string') ? arr.split('') : arr;
-      for (var i = 0; i < l; i++) {
-        if (i in arr2) {
-          f.call(/** @type {?} */ (opt_obj), arr2[i], i, arr);
-        }
-      }
     };
 
 
@@ -237,28 +170,13 @@ goog.array.forEachRight = function(arr, f, opt_obj) {
  * @return {!Array<T>} a new array in which only elements that passed the test
  *     are present.
  * @template T,S
+ * @deprecated Use Array.filter directly
  */
-goog.array.filter = goog.NATIVE_ARRAY_PROTOTYPES &&
-        (goog.array.ASSUME_NATIVE_FUNCTIONS || Array.prototype.filter) ?
+goog.array.filter =
     function(arr, f, opt_obj) {
       goog.asserts.assert(arr.length != null);
 
       return Array.prototype.filter.call(arr, f, opt_obj);
-    } :
-    function(arr, f, opt_obj) {
-      var l = arr.length;  // must be fixed during loop... see docs
-      var res = [];
-      var resLength = 0;
-      var arr2 = (typeof arr === 'string') ? arr.split('') : arr;
-      for (var i = 0; i < l; i++) {
-        if (i in arr2) {
-          var val = arr2[i];  // in case f mutates arr2
-          if (f.call(/** @type {?} */ (opt_obj), val, i, arr)) {
-            res[resLength++] = val;
-          }
-        }
-      }
-      return res;
     };
 
 
@@ -277,24 +195,13 @@ goog.array.filter = goog.NATIVE_ARRAY_PROTOTYPES &&
  * @param {THIS=} opt_obj The object to be used as the value of 'this' within f.
  * @return {!Array<RESULT>} a new array with the results from f.
  * @template THIS, VALUE, RESULT
+ * @deprecated Use Array.map directly
  */
-goog.array.map = goog.NATIVE_ARRAY_PROTOTYPES &&
-        (goog.array.ASSUME_NATIVE_FUNCTIONS || Array.prototype.map) ?
+goog.array.map =
     function(arr, f, opt_obj) {
       goog.asserts.assert(arr.length != null);
 
       return Array.prototype.map.call(arr, f, opt_obj);
-    } :
-    function(arr, f, opt_obj) {
-      var l = arr.length;  // must be fixed during loop... see docs
-      var res = new Array(l);
-      var arr2 = (typeof arr === 'string') ? arr.split('') : arr;
-      for (var i = 0; i < l; i++) {
-        if (i in arr2) {
-          res[i] = f.call(/** @type {?} */ (opt_obj), arr2[i], i, arr);
-        }
-      }
-      return res;
     };
 
 
@@ -321,22 +228,15 @@ goog.array.map = goog.NATIVE_ARRAY_PROTOTYPES &&
  *     within f.
  * @return {R} Result of evaluating f repeatedly across the values of the array.
  * @template T,S,R
+ * @deprecated Use Array.reduce directly
  */
-goog.array.reduce = goog.NATIVE_ARRAY_PROTOTYPES &&
-        (goog.array.ASSUME_NATIVE_FUNCTIONS || Array.prototype.reduce) ?
+goog.array.reduce =
     function(arr, f, val, opt_obj) {
       goog.asserts.assert(arr.length != null);
       if (opt_obj) {
         f = goog.bind(f, opt_obj);
       }
       return Array.prototype.reduce.call(arr, f, val);
-    } :
-    function(arr, f, val, opt_obj) {
-      var rval = val;
-      goog.array.forEach(arr, function(val, index) {
-        rval = f.call(/** @type {?} */ (opt_obj), rval, val, index, arr);
-      });
-      return rval;
     };
 
 
@@ -365,9 +265,9 @@ goog.array.reduce = goog.NATIVE_ARRAY_PROTOTYPES &&
  * @return {R} Object returned as a result of evaluating f repeatedly across the
  *     values of the array.
  * @template T,S,R
+ * @deprecated Use Array.reduceRight directly
  */
-goog.array.reduceRight = goog.NATIVE_ARRAY_PROTOTYPES &&
-        (goog.array.ASSUME_NATIVE_FUNCTIONS || Array.prototype.reduceRight) ?
+goog.array.reduceRight =
     function(arr, f, val, opt_obj) {
       goog.asserts.assert(arr.length != null);
       goog.asserts.assert(f != null);
@@ -375,13 +275,6 @@ goog.array.reduceRight = goog.NATIVE_ARRAY_PROTOTYPES &&
         f = goog.bind(f, opt_obj);
       }
       return Array.prototype.reduceRight.call(arr, f, val);
-    } :
-    function(arr, f, val, opt_obj) {
-      var rval = val;
-      goog.array.forEachRight(arr, function(val, index) {
-        rval = f.call(/** @type {?} */ (opt_obj), rval, val, index, arr);
-      });
-      return rval;
     };
 
 
@@ -401,23 +294,13 @@ goog.array.reduceRight = goog.NATIVE_ARRAY_PROTOTYPES &&
  *     within f.
  * @return {boolean} true if any element passes the test.
  * @template T,S
+ * @deprecated Use Array.some directly
  */
-goog.array.some = goog.NATIVE_ARRAY_PROTOTYPES &&
-        (goog.array.ASSUME_NATIVE_FUNCTIONS || Array.prototype.some) ?
+goog.array.some =
     function(arr, f, opt_obj) {
       goog.asserts.assert(arr.length != null);
 
       return Array.prototype.some.call(arr, f, opt_obj);
-    } :
-    function(arr, f, opt_obj) {
-      var l = arr.length;  // must be fixed during loop... see docs
-      var arr2 = (typeof arr === 'string') ? arr.split('') : arr;
-      for (var i = 0; i < l; i++) {
-        if (i in arr2 && f.call(/** @type {?} */ (opt_obj), arr2[i], i, arr)) {
-          return true;
-        }
-      }
-      return false;
     };
 
 
@@ -437,23 +320,13 @@ goog.array.some = goog.NATIVE_ARRAY_PROTOTYPES &&
  *     within f.
  * @return {boolean} false if any element fails the test.
  * @template T,S
+ * @deprecated Use Array.every directly
  */
-goog.array.every = goog.NATIVE_ARRAY_PROTOTYPES &&
-        (goog.array.ASSUME_NATIVE_FUNCTIONS || Array.prototype.every) ?
+goog.array.every =
     function(arr, f, opt_obj) {
       goog.asserts.assert(arr.length != null);
 
       return Array.prototype.every.call(arr, f, opt_obj);
-    } :
-    function(arr, f, opt_obj) {
-      var l = arr.length;  // must be fixed during loop... see docs
-      var arr2 = (typeof arr === 'string') ? arr.split('') : arr;
-      for (var i = 0; i < l; i++) {
-        if (i in arr2 && !f.call(/** @type {?} */ (opt_obj), arr2[i], i, arr)) {
-          return false;
-        }
-      }
-      return true;
     };
 
 
@@ -789,6 +662,7 @@ goog.array.removeAllIf = function(arr, f, opt_obj) {
  * @param {...*} var_args Items to concatenate.  Arrays will have each item
  *     added, while primitives and objects will be added as is.
  * @return {!Array<?>} The new resultant array.
+ * @deprecated Use Array.concat directly
  */
 goog.array.concat = function(var_args) {
   return Array.prototype.concat.apply([], arguments);
@@ -800,6 +674,7 @@ goog.array.concat = function(var_args) {
  * @param {...!Array<T>} var_args
  * @return {!Array<T>}
  * @template T
+ * @deprecated Use Array.concat directly
  */
 goog.array.join = function(var_args) {
   return Array.prototype.concat.apply([], arguments);
