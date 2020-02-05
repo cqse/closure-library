@@ -516,7 +516,9 @@ goog.ui.tree.BaseNode.EMPTY_CHILDREN_ = [];
  * @return {goog.ui.tree.BaseNode} The child at the given index; null if none.
  * @override
  */
-goog.ui.tree.BaseNode.prototype.getChildAt;
+goog.ui.tree.BaseNode.prototype.getChildAt = function(index) {
+  return /** @type {goog.ui.tree.BaseNode} */(super.getChildAt(index));
+};
 
 
 /**

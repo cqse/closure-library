@@ -899,7 +899,9 @@ goog.ui.Container.prototype.addChild = function(child, opt_render) {
  * @return {goog.ui.Control} The child with the given ID; null if none.
  * @override
  */
-goog.ui.Container.prototype.getChild;
+goog.ui.Container.prototype.getChild = function(id) {
+  return /** @type {goog.ui.Control} */(super.getChild(id));
+};
 
 
 /**
@@ -909,7 +911,9 @@ goog.ui.Container.prototype.getChild;
  * @return {goog.ui.Control} The child with the given ID; null if none.
  * @override
  */
-goog.ui.Container.prototype.getChildAt;
+goog.ui.Container.prototype.getChildAt = function(index) {
+  return /** @type {goog.ui.Control} */(super.getChildAt(index));
+};
 
 
 /**
