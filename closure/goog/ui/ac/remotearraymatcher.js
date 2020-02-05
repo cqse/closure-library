@@ -21,9 +21,7 @@ goog.provide('goog.ui.ac.RemoteArrayMatcher');
 goog.require('goog.Disposable');
 goog.require('goog.Uri');
 goog.require('goog.events');
-goog.require('goog.net.EventType');
-goog.require('goog.net.XhrIo');
-
+goog.require('goog.object');
 
 
 /**
@@ -34,13 +32,12 @@ goog.require('goog.net.XhrIo');
  *     similarity matches for the input token against the dictionary.
  *     The value is sent to the server as the 'use_similar' query param which is
  *     either "1" (opt_noSimilar==false) or "0" (opt_noSimilar==true).
- * @param {goog.net.XmlHttpFactory=} opt_xmlHttpFactory Specify the
- *     XmlHttpFactory used to retrieve the matches.
+ * XmlHttpFactory used to retrieve the matches.
  * @constructor
  * @extends {goog.Disposable}
  */
 goog.ui.ac.RemoteArrayMatcher = function(
-    url, opt_noSimilar, opt_xmlHttpFactory) {
+    url, opt_noSimilar) {
   goog.Disposable.call(this);
 
   /**
@@ -60,12 +57,12 @@ goog.ui.ac.RemoteArrayMatcher = function(
   this.useSimilar_ = !opt_noSimilar;
 
   /**
-   * The XhrIo object used for making remote requests.  When a new request
+   * Used for making remote requests.  When a new request
    * is made, the current one is aborted and the new one sent.
-   * @type {goog.net.XhrIo}
+   * @type {!XMLHttpRequest}
    * @private
    */
-  this.xhr_ = new goog.net.XhrIo(opt_xmlHttpFactory);
+  this.xhr_ = new XMLHttpRequest();
 };
 goog.inherits(goog.ui.ac.RemoteArrayMatcher, goog.Disposable);
 
@@ -137,7 +134,7 @@ goog.ui.ac.RemoteArrayMatcher.prototype.setHeaders = function(headers) {
  */
 goog.ui.ac.RemoteArrayMatcher.prototype.setTimeoutInterval = function(
     interval) {
-  this.xhr_.setTimeoutInterval(interval);
+  this.xhr_.timeout = interval;
 };
 
 
@@ -213,7 +210,7 @@ goog.ui.ac.RemoteArrayMatcher.prototype.parseResponseText = function(
  */
 goog.ui.ac.RemoteArrayMatcher.prototype.xhrCallback = function(
     token, matchHandler, event) {
-  var text = event.target.getResponseText();
+  var text = event.target.responseText;
   matchHandler(token, this.parseResponseText(text));
 };
 
@@ -250,7 +247,7 @@ goog.ui.ac.RemoteArrayMatcher.prototype.requestMatchingRows = function(
 
   // Abort the current request and issue the new one; prevent requests from
   // being queued up by the browser with a slow server
-  if (this.xhr_.isActive()) {
+  if (this.xhr_.readyState === XMLHttpRequest.OPENED || this.xhr_.readyState === XMLHttpRequest.LOADING) {
     this.xhr_.abort();
   }
   // This ensures if previous XHR is aborted or ends with error, the
@@ -260,13 +257,20 @@ goog.ui.ac.RemoteArrayMatcher.prototype.requestMatchingRows = function(
   }
   // Listen once ensures successful callback gets cleared by itself.
   this.lastListenerKey_ =
-      goog.events.listenOnce(this.xhr_, goog.net.EventType.SUCCESS, callback);
-  this.xhr_.send(url, this.method_, this.content_, this.headers_);
+      goog.events.listenOnce(this.xhr_, 'load', callback);
+
+  this.xhr_.open(this.method_, url);
+  goog.object.forEach(this.headers_, google.bind(function(value, headerKey) {
+    this.xhr_.setRequestHeader(headerKey, value);
+  }, this));
+  this.xhr_.send(this.content_);
 };
 
 
 /** @override */
 goog.ui.ac.RemoteArrayMatcher.prototype.disposeInternal = function() {
-  this.xhr_.dispose();
+  if (this.xhr_.readyState === XMLHttpRequest.OPENED || this.xhr_.readyState === XMLHttpRequest.LOADING) {
+    this.xhr_.abort();
+  }
   goog.ui.ac.RemoteArrayMatcher.superClass_.disposeInternal.call(this);
 };

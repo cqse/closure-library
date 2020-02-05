@@ -37,11 +37,12 @@ goog.require('goog.ui.ac.Renderer');
  *     to false.
  * @param {boolean=} opt_useSimilar Whether to use similar matches; e.g.
  *     "gost" => "ghost".
+ * @param {goog.ui.ac.RemoteArrayMatcher=} opt_matcher
  * @constructor
  * @extends {goog.ui.ac.AutoComplete}
  */
-goog.ui.ac.Remote = function(url, input, opt_multi, opt_useSimilar) {
-  var matcher = new goog.ui.ac.RemoteArrayMatcher(url, !opt_useSimilar);
+goog.ui.ac.Remote = function(url, input, opt_multi, opt_useSimilar, opt_matcher) {
+  var matcher = opt_matcher || new goog.ui.ac.RemoteArrayMatcher(url, !opt_useSimilar);
 
   var renderer = new goog.ui.ac.Renderer();
 
@@ -50,6 +51,7 @@ goog.ui.ac.Remote = function(url, input, opt_multi, opt_useSimilar) {
   goog.ui.ac.AutoComplete.call(this, matcher, renderer, inputhandler);
 
   this.matcher_ = matcher;
+  this.renderer_ = renderer;
 
   inputhandler.attachAutoComplete(this);
   inputhandler.attachInputs(input);
