@@ -98,6 +98,7 @@ goog.dom.defaultDomHelper_;
 /**
  * Gets the document object being used by the dom library.
  * @return {!Document} Document object.
+ * @deprecated Use document instead
  */
 goog.dom.getDocument = function() {
   return document;
@@ -111,6 +112,7 @@ goog.dom.getDocument = function() {
  *
  * @param {string|Element} element Element ID or a DOM node.
  * @return {Element} The element with the given ID, or the node passed in.
+ * @deprecated Use document.getElementById(id) instead
  */
 goog.dom.getElement = function(element) {
   return goog.dom.getElementHelper_(document, element);
@@ -1176,6 +1178,7 @@ goog.dom.canHaveChildren = function(node) {
  * Appends a child to a node.
  * @param {Node} parent Parent.
  * @param {Node} child Child.
+ * @deprecated Use Element.appendChild instead (dom.appendChild(p,c) -> p.appendChild(c))
  */
 goog.dom.appendChild = function(parent, child) {
   goog.asserts.assert(
@@ -1489,6 +1492,7 @@ goog.dom.isWindow = function(obj) {
  * Returns an element's parent, if it's an Element.
  * @param {Element} element The DOM element.
  * @return {Element} The parent, or null if not an Element.
+ * @deprecated Use Element.parentElement (or Element.parentNode)
  */
 goog.dom.getParentElement = function(element) {
   var parent;

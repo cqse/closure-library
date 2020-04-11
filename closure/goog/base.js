@@ -680,7 +680,6 @@ goog.isNull = function(val) {
  * Returns true if the specified value is defined and not null.
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is defined and not null.
- * @deprecated Use `val != null` instead.
  */
 goog.isDefAndNotNull = function(val) {
   // Note that undefined == null.
@@ -948,6 +947,7 @@ goog.bindJs_ = function(fn, selfObj, var_args) {
  *     invoked as a method of.
  * @template T
  * @suppress {deprecated} See above.
+ * @deprecated Use an arrow function or fn.bind(selfObj[, args])
  */
 goog.bind = function(fn, selfObj, var_args) {
   // TODO(nicksantos): narrow the type signature.

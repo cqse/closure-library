@@ -243,6 +243,7 @@ goog.object.getValues = function(obj) {
  *
  * @param {Object} obj The object from which to get the keys.
  * @return {!Array<string>} Array of property keys.
+ * deprecated Use Object.keys(obj) instead
  */
 goog.object.getKeys = function(obj) {
   const res = [];

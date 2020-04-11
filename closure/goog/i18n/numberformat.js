@@ -664,6 +664,7 @@ goog.i18n.NumberFormat.prototype.format = function(number) {
  * @return {{intValue: number, fracValue: number}} The integer and fractional
  *     part after rounding.
  * @private
+ * @suppress {checkTypes}
  */
 goog.i18n.NumberFormat.prototype.roundNumber_ = function(number) {
   var shift = goog.i18n.NumberFormat.decimalShift_;
@@ -1420,6 +1421,7 @@ goog.i18n.NumberFormat.NULL_UNIT_ = {
  * @param {string} plurality The plurality of the number.
  * @return {!goog.i18n.NumberFormat.CompactNumberUnit} The compact unit.
  * @private
+ * @suppress {checkTypes}
  */
 goog.i18n.NumberFormat.prototype.getUnitFor_ = function(base, plurality) {
   var table = this.compactStyle_ == goog.i18n.NumberFormat.CompactStyle.SHORT ?
@@ -1578,6 +1580,7 @@ goog.i18n.NumberFormat.decimalShift_ = function(number, digitCount) {
  *     Must be an integer. May be positive or negative.
  * @return {number}
  * @private
+ * @suppress {checkTypes}
  */
 goog.i18n.NumberFormat.decimalRound_ = function(number, decimalCount) {
   goog.asserts.assert(

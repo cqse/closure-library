@@ -117,7 +117,7 @@ goog.array.lastIndexOf =
  *     array). The return value is ignored.
  * @param {S=} opt_obj The object to be used as the value of 'this' within f.
  * @template T,S
- * @deprecated Use Array.forEach directly
+ * @deprecated Use Array.forEach directly or for ... of loops
  */
 goog.array.forEach =
     function(arr, f, opt_obj) {

@@ -124,6 +124,7 @@ goog.ui.Control.registerDecorator = goog.ui.registry.setDecoratorByClassName;
  * @return {goog.ui.Control?} New control instance to decorate the element
  *     (null if none).
  * @deprecated Use {@link goog.ui.registry.getDecorator} instead.
+ * @suppress {checkTypes}
  */
 goog.ui.Control.getDecorator =
     /** @type {function(Element): goog.ui.Control} */ (
