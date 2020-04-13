@@ -250,6 +250,7 @@ goog.dom.getElementByTagNameAndClass = function(opt_tag, opt_class, opt_el) {
  * @param {string} className the name of the class to look for.
  * @param {(Document|Element)=} opt_el Optional element to look in.
  * @return {!IArrayLike<!Element>} The items found with the class name provided.
+ * @deprecated Use document.querySelectorAll('.classname') or element.querySelectorAll('.classname') instead
  */
 goog.dom.getElementsByClass = function(className, opt_el) {
   var parent = opt_el || document;
@@ -267,6 +268,7 @@ goog.dom.getElementsByClass = function(className, opt_el) {
  * @param {string} className the name of the class to look for.
  * @param {Element|Document=} opt_el Optional element to look in.
  * @return {Element} The first item with the class name provided.
+ * @deprecated Use document.querySelector('.classname') or element.querySelector('.classname') instead
  */
 goog.dom.getElementByClass = function(className, opt_el) {
   var parent = opt_el || document;
@@ -1270,6 +1272,7 @@ goog.dom.insertChildAt = function(parent, child, index) {
  * Removes a node from its parent.
  * @param {Node} node The node to remove.
  * @return {Node} The node removed if removed; else, null.
+ * @deprecated Use node.parentNode?.removeChild(node) instead
  */
 goog.dom.removeNode = function(node) {
   return node && node.parentNode ? node.parentNode.removeChild(node) : null;

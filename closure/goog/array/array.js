@@ -365,6 +365,7 @@ goog.array.count = function(arr, f, opt_obj) {
  * @return {T|null} The first array element that passes the test, or null if no
  *     element is found.
  * @template T,S
+ * @deprecated Use arr.find(f) instead
  */
 goog.array.find = function(arr, f, opt_obj) {
   var i = goog.array.findIndex(arr, f, opt_obj);
@@ -385,6 +386,7 @@ goog.array.find = function(arr, f, opt_obj) {
  * @return {number} The index of the first array element that passes the test,
  *     or -1 if no element is found.
  * @template T,S
+ * @deprecated Use arr.findIndex(f) instead
  */
 goog.array.findIndex = function(arr, f, opt_obj) {
   var l = arr.length;  // must be fixed during loop... see docs
@@ -450,6 +452,7 @@ goog.array.findIndexRight = function(arr, f, opt_obj) {
  *     element.
  * @param {*} obj The object for which to test.
  * @return {boolean} true if obj is present.
+ * @deprecated Use arr.includes(obj) instead
  */
 goog.array.contains = function(arr, obj) {
   return goog.array.indexOf(arr, obj) >= 0;
@@ -993,6 +996,7 @@ goog.array.binarySearch_ = function(
  *     negative number, zero, or a positive number depending on whether the
  *     first argument is less than, equal to, or greater than the second.
  * @template T
+ * @deprecated Use arr.sort(opt_compareFn) instead
  */
 goog.array.sort = function(arr, opt_compareFn) {
   // TODO(arv): Update type annotation since null is not accepted.
