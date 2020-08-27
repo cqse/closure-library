@@ -23,7 +23,7 @@ goog.require('goog.async.throwException');
  * assuming either the native, or polyfill version will be used. Does still
  * permit tests to use forceNextTick.
  */
-goog.ASSUME_NATIVE_PROMISE = goog.define('goog.ASSUME_NATIVE_PROMISE', false);
+goog.ASSUME_NATIVE_PROMISE = true;
 
 /**
  * Fires the provided callback just before the current callstack unwinds, or as
@@ -52,21 +52,10 @@ goog.async.run = function(callback, opt_context) {
  * @private
  */
 goog.async.run.initializeRunner_ = function() {
-  if (goog.ASSUME_NATIVE_PROMISE ||
-      (goog.global.Promise && goog.global.Promise.resolve)) {
-    // Use goog.global.Promise instead of just Promise because the relevant
-    // externs may be missing, and don't alias it because this could confuse the
-    // compiler into thinking the polyfill is required when it should be treated
-    // as optional.
-    var promise = goog.global.Promise.resolve(undefined);
+    var promise = Promise.resolve(undefined);
     goog.async.run.schedule_ = function() {
       promise.then(goog.async.run.processWorkQueue);
     };
-  } else {
-    goog.async.run.schedule_ = function() {
-      goog.async.nextTick(goog.async.run.processWorkQueue);
-    };
-  }
 };
 
 
