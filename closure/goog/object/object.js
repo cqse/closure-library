@@ -510,9 +510,9 @@ goog.object.equals = function(a, b) {
 /**
  * Returns a shallow clone of the object.
  *
- * @param {Object<K,V>} obj Object to clone.
- * @return {!Object<K,V>} Clone of the input object.
- * @template K,V
+ * @param {T} obj Object to clone.
+ * @return {T} Clone of the input object.
+ * @template T
  */
 goog.object.clone = function(obj) {
   // We cannot use the prototype trick because a lot of methods depend on where
