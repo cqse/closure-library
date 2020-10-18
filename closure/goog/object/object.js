@@ -54,6 +54,7 @@ goog.object.is = function(v, v2) {
  *     key and the object) and the return value is ignored.
  * @param {T=} opt_obj This is used as the 'this' object within f.
  * @template T,K,V
+ * @deprecated Use a for .. in loop instead
  */
 goog.object.forEach = function(obj, f, opt_obj) {
   for (const key in obj) {
@@ -166,6 +167,7 @@ goog.object.every = function(obj, f, opt_obj) {
  * @param {Object} obj The object for which to get the number of key-value
  *     pairs.
  * @return {number} The number of key-value pairs in the object map.
+ * @deprecated Use Object.keys(obj).length instead
  */
 goog.object.getCount = function(obj) {
   let rv = 0;
@@ -227,6 +229,7 @@ goog.object.contains = function(obj, val) {
  * @param {Object<K,V>} obj The object from which to get the values.
  * @return {!Array<V>} The values in the object/map/hash.
  * @template K,V
+ * @deprecated Use Object.values(obj) instead
  */
 goog.object.getValues = function(obj) {
   const res = [];
@@ -290,6 +293,7 @@ goog.object.getValueByKeys = function(obj, var_args) {
  * @param {Object} obj The object in which to look for key.
  * @param {?} key The key for which to check.
  * @return {boolean} true If the map contains the key.
+ * @deprecated Use the in operator instead
  */
 goog.object.containsKey = function(obj, key) {
   return obj !== null && key in obj;
@@ -422,6 +426,7 @@ goog.object.add = function(obj, key, val) {
  *     key (default is undefined).
  * @return {V|R|undefined} The value for the given key.
  * @template K,V,R
+ * @deprecated Use obj[key] ?? opt_val instead
  */
 goog.object.get = function(obj, key, opt_val) {
   if (obj !== null && key in obj) {
@@ -438,6 +443,7 @@ goog.object.get = function(obj, key, opt_val) {
  * @param {string} key The key to add.
  * @param {V} value The value to add.
  * @template K,V
+ * @deprecated Use obj[key] = value instead
  */
 goog.object.set = function(obj, key, value) {
   obj[key] = value;
@@ -513,6 +519,7 @@ goog.object.equals = function(a, b) {
  * @param {T} obj Object to clone.
  * @return {T} Clone of the input object.
  * @template T
+ * @deprecated Use Object.assign({}, obj) instead
  */
 goog.object.clone = function(obj) {
   // We cannot use the prototype trick because a lot of methods depend on where
@@ -638,6 +645,7 @@ goog.object.extend = function(target, var_args) {
  * @return {!Object} The new object.
  * @throws {Error} If there are uneven number of arguments or there is only one
  *     non array argument.
+ * @deprecated Use Object literals instead
  */
 goog.object.create = function(var_args) {
   const argLength = arguments.length;
