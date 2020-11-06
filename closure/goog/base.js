@@ -384,181 +384,11 @@ goog.getObjectByName = function(name, opt_obj) {
   return cur;
 };
 
-
-/**
- * Globalizes a whole namespace, such as goog or goog.lang.
- *
- * @param {!Object} obj The namespace to globalize.
- * @param {Object=} opt_global The object to add the properties to.
- * @deprecated Properties may be explicitly exported to the global scope, but
- *     this should no longer be done in bulk.
- */
-goog.globalize = function(obj, opt_global) {
-  var global = opt_global || goog.global;
-  for (var x in obj) {
-    global[x] = obj[x];
-  }
-};
-
-/**
- * @param {string} msg
- * @private
- */
-goog.logToConsole_ = function(msg) {
-  if (goog.global.console) {
-    goog.global.console['error'](msg);
-  }
-};
-
-
-/**
- * A hook for overriding the base path.
- * @type {string|undefined}
- */
-goog.global.CLOSURE_BASE_PATH;
-
-
-/**
- * Whether to attempt to load Closure's deps file. By default, when uncompiled,
- * deps files will attempt to be loaded.
- * @type {boolean|undefined}
- */
-goog.global.CLOSURE_NO_DEPS;
-
-
-/**
- * A function to import a single script. This is meant to be overridden when
- * Closure is being run in non-HTML contexts, such as web workers. It's defined
- * in the global scope so that it can be set before base.js is loaded, which
- * allows deps.js to be imported properly.
- *
- * The first parameter the script source, which is a relative URI. The second,
- * optional parameter is the script contents, in the event the script needed
- * transformation. It should return true if the script was imported, false
- * otherwise.
- * @type {(function(string, string=): boolean)|undefined}
- */
-goog.global.CLOSURE_IMPORT_SCRIPT;
-
-
 /**
  * Null function used for default values of callbacks, etc.
  * @return {void} Nothing.
  */
 goog.nullFunction = function() {};
-
-
-/**
- * When defining a class Foo with an abstract method bar(), you can do:
- * Foo.prototype.bar = goog.abstractMethod
- *
- * Now if a subclass of Foo fails to override bar(), an error will be thrown
- * when bar() is invoked.
- *
- * @type {!Function}
- * @throws {Error} when invoked to indicate the method should be overridden.
- */
-goog.abstractMethod = function() {
-  throw new Error('unimplemented abstract method');
-};
-
-
-/**
- * Adds a `getInstance` static method that always returns the same
- * instance object.
- * @param {!Function} ctor The constructor for the class to add the static
- *     method to.
- * @suppress {missingProperties} 'instance_' isn't a property on 'Function'
- *     but we don't have a better type to use here.
- */
-goog.addSingletonGetter = function(ctor) {
-  // instance_ is immediately set to prevent issues with sealed constructors
-  // such as are encountered when a constructor is returned as the export object
-  // of a goog.module in unoptimized code.
-  // Delcare type to avoid conformance violations that ctor.instance_ is unknown
-  /** @type {undefined|!Object} @suppress {underscore} */
-  ctor.instance_ = undefined;
-  ctor.getInstance = function() {
-    if (ctor.instance_) {
-      return ctor.instance_;
-    }
-    if (goog.DEBUG) {
-      // NOTE: JSCompiler can't optimize away Array#push.
-      goog.instantiatedSingletons_[goog.instantiatedSingletons_.length] = ctor;
-    }
-    // Cast to avoid conformance violations that ctor.instance_ is unknown
-    return /** @type {!Object|undefined} */ (ctor.instance_) = new ctor;
-  };
-};
-
-
-/**
- * All singleton classes that have been instantiated, for testing. Don't read
- * it directly, use the `goog.testing.singleton` module. The compiler
- * removes this variable if unused.
- * @type {!Array<!Function>}
- * @private
- */
-goog.instantiatedSingletons_ = [];
-
-
-/**
- * @define {boolean} Whether to load goog.modules using `eval` when using
- * the debug loader.  This provides a better debugging experience as the
- * source is unmodified and can be edited using Chrome Workspaces or similar.
- * However in some environments the use of `eval` is banned
- * so we provide an alternative.
- */
-goog.LOAD_MODULE_USING_EVAL = goog.define('goog.LOAD_MODULE_USING_EVAL', true);
-
-
-/**
- * @define {boolean} Whether the exports of goog.modules should be sealed when
- * possible.
- */
-goog.SEAL_MODULE_EXPORTS = goog.define('goog.SEAL_MODULE_EXPORTS', goog.DEBUG);
-
-
-/**
- * @package {?boolean}
- * Visible for testing.
- */
-goog.hasBadLetScoping = null;
-
-
-/**
- * @return {boolean}
- * @package Visible for testing.
- */
-goog.useSafari10Workaround = function() {
-  if (goog.hasBadLetScoping == null) {
-    var hasBadLetScopingVar;
-    try {
-      hasBadLetScopingVar = !eval(
-          '"use strict";' +
-          'let x = 1; function f() { return typeof x; };' +
-          'f() == "number";');
-    } catch (e) {
-      // Assume that ES6 syntax isn't supported.
-      hasBadLetScopingVar = false;
-    }
-    goog.hasBadLetScoping = hasBadLetScopingVar;
-  }
-  return goog.hasBadLetScoping;
-};
-
-
-/**
- * @param {string} moduleDef
- * @return {string}
- * @package Visible for testing.
- */
-goog.workaroundSafari10EvalBug = function(moduleDef) {
-  return '(function(){' + moduleDef +
-      '\n' +  // Terminate any trailing single line comment.
-      ';' +   // Terminate any trailing expression.
-      '})();\n';
-};
 
 
 //==============================================================================
@@ -1731,7 +1561,7 @@ goog.createTrustedTypesPolicy = function(name) {
       createURL: goog.identity_
     });
   } catch (e) {
-    goog.logToConsole_(e.message);
+    console.log(e.message);
   }
   return policy;
 };
